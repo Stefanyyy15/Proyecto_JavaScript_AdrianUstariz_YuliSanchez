@@ -1,18 +1,23 @@
 @font-face {
-    font-family: "StarWars";
-    src: url(/backstage/Futura\ Display.ttf);
+  font-family: "StarWars";
+  src: url(/backstage/Futura\ Display.ttf);
 }
 
-body{
-    font-family: "StarWars";
-    background: url(/backstage/fondo.png);
-    background-size: contain;
-    background-attachment: fixed;
-    color: white;
+body {
+  font-family: "StarWars";
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
+    url(/backstage/fondo.png);
+  background-size: contain;
+  background-attachment: fixed;
+  color: white;
+}
+.myH1 {
+  font-size: 50px;
 }
 
-.barrita{
-    display: flex;
-    justify-content: space-around;
-    letter-spacing: 3px;
+.barrita {
+  display: flex;
+  justify-content: space-around;
+  letter-spacing: 3px;
+  flex-wrap: wrap;
 }
