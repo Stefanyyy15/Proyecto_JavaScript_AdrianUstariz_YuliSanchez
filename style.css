@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "StarWars";
+    src: url(/backstage/Futura\ Display.ttf);
+}
+
+body{
+    font-family: "StarWars";
+    background: url(/backstage/fondo.png);
+    background-size: contain;
+    background-attachment: fixed;
+    color: white;
+}
+
+.barrita{
+    display: flex;
+    justify-content: space-around;
+    letter-spacing: 3px;
+}
