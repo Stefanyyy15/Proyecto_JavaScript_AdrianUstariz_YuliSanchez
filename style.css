@@ -20,7 +20,18 @@ body {
   margin-top: 2%;
 }
 
-.contenedor{
+.botonsitos {
+  font-family: StarWars;
+  width: 150px;
+  height: 50px;
+  font-size: 35px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.contenedor {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -30,5 +41,9 @@ body {
   border: 2px solid #c7c31c;
   letter-spacing: 2px;
   font-size: 30px;
+  flex-direction: column;
 }
 
+.texto_oculto {
+  display: none;
+}
