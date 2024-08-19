@@ -29,6 +29,11 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  transition: color;
+}
+
+.botonsitos:hover{
+  color: #c7c31c;
 }
 
 .contenedor {
@@ -38,12 +43,16 @@ body {
   margin-top: 2%;
   margin-left: 25%;
   width: 50vw;
-  border: 2px solid #c7c31c;
+  height: 60vh;
+  overflow: hidden;
   letter-spacing: 2px;
   font-size: 30px;
   flex-direction: column;
+  overflow-y: scroll;
 }
-
+.contenedor::-webkit-scrollbar {
+  display: none; 
+}
 .texto_oculto {
   display: none;
 }

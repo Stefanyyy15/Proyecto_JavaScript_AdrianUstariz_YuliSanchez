@@ -13,11 +13,14 @@ async function peticion(url) {
 }
 
 const btnPersonajes = document.getElementById("personajesBtn");
+const btnPelis = document.getElementById("peliculasBtn");
 const textoInicial = document.querySelector(".texto_inicial");
 
 btnPersonajes.onclick = traerPersonajes;
+btnPelis.onclick = verPeliculas;
 
 let urlPersonajes = "https://swapi.py4e.com/api/people";
+let urlPeliculas = "https://swapi.py4e.com/api/films";
 
 async function traerPersonajes() {
   const contenedor = document.querySelector(".contenedor");
@@ -29,6 +32,20 @@ async function traerPersonajes() {
     const texto = document.createElement("p");
     texto.classList.add("personajes_list");
     texto.innerHTML = `Nombre: ${personaje.name} | Altura: ${personaje.height} | Peso: ${personaje.mass}`;
+    contenedor.appendChild(texto);
+  });
+}
+
+async function verPeliculas() {
+  const contenedor = document.querySelector(".contenedor");
+  const pelis = await peticion(urlPeliculas);
+  const listaPelis = pelis.results;
+  textoInicial.classList.add("texto_oculto");
+
+  listaPelis.forEach(function (personaje) {
+    const texto = document.createElement("p");
+    texto.classList.add("pelis_list");
+    texto.innerHTML = `Nombre: ${personaje.tittle} | Director: ${personaje.director} | Productor: ${personaje.producer} | Fecha: ${personaje.release_date} `;
     contenedor.appendChild(texto);
   });
 }
