@@ -11,13 +11,24 @@ body {
   background-attachment: fixed;
   color: white;
 }
-.myH1 {
-  font-size: 50px;
-}
 
 .barrita {
   display: flex;
   justify-content: space-around;
   letter-spacing: 3px;
   flex-wrap: wrap;
+  margin-top: 2%;
 }
+
+.contenedor{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2%;
+  margin-left: 25%;
+  width: 50vw;
+  border: 2px solid #c7c31c;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
