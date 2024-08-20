@@ -11,7 +11,6 @@ async function peticion(url) {
     return [];
   }
 }
-let urlPersonajes = "https://swapi.py4e.com/api/people";
 
 const btnPersonajes = document.getElementById("personajesBtn");
 const btnPelis = document.getElementById("peliculasBtn");
@@ -43,11 +42,12 @@ async function verPeliculas() {
   const pelis = await peticion(urlPeliculas);
   const listaPelis = pelis.results;
   textoInicial.classList.add("texto_oculto");
+  contenedor.innerHTML = "";
 
   listaPelis.forEach(function (personaje) {
     const texto = document.createElement("p");
     texto.classList.add("pelis_list");
-    texto.innerHTML = `Nombre: ${personaje.tittle} | Director: ${personaje.director} | Productor: ${personaje.producer} | Fecha: ${personaje.release_date} `;
+    texto.innerHTML = `Nombre: ${personaje.title} | Director: ${personaje.director} | Productor: ${personaje.producer} | Fecha: ${personaje.release_date} `;
     contenedor.appendChild(texto);
   });
 }
