@@ -11,18 +11,18 @@ async function peticion(url) {
     return [];
   }
 }
+let urlPersonajes = "https://swapi.py4e.com/api/people";
 
 const btnPersonajes = document.getElementById("personajesBtn");
 const textoInicial = document.querySelector(".texto_inicial");
 
 btnPersonajes.onclick = traerPersonajes;
 
-let urlPersonajes = "https://swapi.py4e.com/api/people";
-
 async function traerPersonajes() {
   const contenedor = document.querySelector(".contenedor");
   const personajes = await peticion(urlPersonajes);
   const listaPersonajes = personajes.results;
+  contenedor.innerHTML = "";
   textoInicial.classList.add("texto_oculto");
 
   listaPersonajes.forEach(function (personaje) {
