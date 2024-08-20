@@ -14,13 +14,16 @@ async function peticion(url) {
 
 const btnPersonajes = document.getElementById("personajesBtn");
 const btnPelis = document.getElementById("peliculasBtn");
+const btnPlanetas = document.getElementById("planetasBtn");
 const textoInicial = document.querySelector(".texto_inicial");
 
 btnPersonajes.onclick = traerPersonajes;
 btnPelis.onclick = verPeliculas;
+btnPlanetas.onclick = verPlanetas;
 
 let urlPersonajes = "https://swapi.py4e.com/api/people";
 let urlPeliculas = "https://swapi.py4e.com/api/films";
+let urlPlanets = "https://swapi.py4e.com/api/planets";
 
 async function traerPersonajes() {
   const contenedor = document.querySelector(".contenedor");
@@ -48,6 +51,21 @@ async function verPeliculas() {
     const texto = document.createElement("p");
     texto.classList.add("pelis_list");
     texto.innerHTML = `Nombre: ${personaje.title} | Director: ${personaje.director} | Productor: ${personaje.producer} | Fecha: ${personaje.release_date} `;
+    contenedor.appendChild(texto);
+  });
+}
+
+async function verPlanetas() {
+  const contenedor = document.querySelector(".contenedor");
+  const planetas = await peticion(urlPlanets);
+  const listaPlanetas = planetas.results;
+  textoInicial.classList.add("texto_oculto");
+  contenedor.innerHTML = "";
+
+  listaPlanetas.forEach(function (planeta) {
+    const texto = document.createElement("p");
+    texto.classList.add("pelis_list");
+    texto.innerHTML = `Nombre: ${planeta.name} | Clima: ${planeta.climate} | Diametro: ${planeta.diameter} `;
     contenedor.appendChild(texto);
   });
 }
