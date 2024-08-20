@@ -2,7 +2,6 @@
   font-family: "StarWars";
   src: url(/backstage/Futura\ Display.ttf);
 }
-
 body {
   font-family: "StarWars";
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
@@ -11,7 +10,6 @@ body {
   background-attachment: fixed;
   color: white;
 }
-
 .barrita {
   display: flex;
   justify-content: space-around;
@@ -19,7 +17,6 @@ body {
   flex-wrap: wrap;
   margin-top: 2%;
 }
-
 .botonsitos {
   font-family: StarWars;
   width: 150px;
@@ -31,26 +28,40 @@ body {
   cursor: pointer;
   transition: color;
 }
-
 .botonsitos:hover{
   color: #c7c31c;
 }
-
 .contenedor {
-  display: flex;
-  justify-content: center;
+  width: 50%;
+  height: 50vh;
   text-align: center;
-  margin-top: 3%;
-  margin-left: 25%;
-  width: 50vw;
-  height: 60vh;
   overflow: hidden;
   letter-spacing: 2px;
   font-size: 30px;
   flex-direction: column;
   overflow-y: scroll;
+  background-color: rgba(70, 69, 69, 0.24);
+  border-radius: 30px;
+}
+.contenedor2{
+  display: none;
+}
+.contenedor2-active{
+  display: flex;
+  align-items: center;
+  height: 50vh;
 }
 
+.grande{
+  display: flex;
+  margin-top: 3%;
+  margin-left: 11%;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  height: 60vh;
+  flex-wrap: wrap;
+}
 .contenedor::-webkit-scrollbar {
   display: none; 
 }
@@ -58,7 +69,56 @@ body {
   display: none;
 }
 .scroll{
+  display: none;
+}
+.scroll-active{
   display: flex;
-  justify-content: center;
+  margin-left: 30%;
   margin-top: -1%;
+}
+strong{
+  color:#bdba1c9a;
+}
+.submenus{
+  display: flex;
+  background-color: rgba(70, 69, 69, 0.432);
+  border-radius: 3px;
+  flex-direction: column;
+  align-items: center;
+  color: white; 
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  line-height: 55px;
+}
+.submenus a{
+  text-decoration: none;
+  color: white;
+}
+.submenus a:hover{
+  color: #bdba1c9a;
+}
+#submenuFilms{
+  position: absolute;
+  left: 110px;
+}
+#submenuPlanets{
+  position: absolute;
+  left: 400px;
+}
+#submenuVehicles{
+  position: absolute;
+  left: 750px;
+}
+#submenuCharacters{
+  position: absolute;
+  left: 1070px;
+}
+#submenuSpecies{
+  position: absolute;
+  left: 1382px;
+}
+#submenuStarships{
+  position: absolute;
+  left: 1700px;
 }

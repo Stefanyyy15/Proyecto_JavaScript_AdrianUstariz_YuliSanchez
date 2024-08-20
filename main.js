@@ -27,15 +27,18 @@ let urlPlanets = "https://swapi.py4e.com/api/planets";
 
 async function traerPersonajes() {
   const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  const gif = document.querySelector(".scroll")
   const personajes = await peticion(urlPersonajes);
   const listaPersonajes = personajes.results;
   contenedor.innerHTML = "";
   textoInicial.classList.add("texto_oculto");
-
+  imagenes.classList.add("contenedor2-active");
+  gif.classList.add("scroll-active");
   listaPersonajes.forEach(function (personaje) {
     const texto = document.createElement("p");
     texto.classList.add("personajes_list");
-    texto.innerHTML = `Nombre: ${personaje.name} | Altura: ${personaje.height} | Peso: ${personaje.mass}`;
+    texto.innerHTML = `Nombre: ${personaje.name}`;
     contenedor.appendChild(texto);
   });
 }
