@@ -40,7 +40,7 @@ body {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin-top: 2%;
+  margin-top: 3%;
   margin-left: 25%;
   width: 50vw;
   height: 60vh;
@@ -50,9 +50,15 @@ body {
   flex-direction: column;
   overflow-y: scroll;
 }
+
 .contenedor::-webkit-scrollbar {
   display: none; 
 }
 .texto_oculto {
   display: none;
+}
+.scroll{
+  display: flex;
+  justify-content: center;
+  margin-top: -1%;
 }
