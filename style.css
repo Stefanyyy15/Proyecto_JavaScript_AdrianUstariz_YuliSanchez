@@ -51,7 +51,6 @@ body {
   align-items: center;
   height: 50vh;
 }
-
 .grande {
   display: flex;
   margin-top: 3%;
@@ -68,21 +67,12 @@ body {
 .texto_oculto {
   display: none;
 }
-.scroll {
-  display: none;
-}
-.scroll-active {
-  display: flex;
-  margin-left: 30%;
-  margin-top: -1%;
-}
 strong {
   color: #bdba1c9a;
 }
 .submenus {
   display: none;
 }
-
 .submenus-active {
   display: flex;
   background-color: rgba(0, 0, 0, 0.432);
@@ -95,7 +85,6 @@ strong {
   font-size: 25px;
   line-height: 55px;
 }
-
 #submenuFilms {
   position: absolute;
   left: 110px;
@@ -110,17 +99,16 @@ strong {
 }
 #submenuCharacters {
   position: absolute;
-  left: 1070px;
+  left: 1055px;
 }
 #submenuSpecies {
   position: absolute;
-  left: 1382px;
+  left: 1355px;
 }
 #submenuStarships {
   position: absolute;
   left: 1700px;
 }
-
 .botonistos-submenu {
   background-color: transparent;
   color: white;
@@ -130,7 +118,6 @@ strong {
   cursor: pointer;
   margin-top: 15px;
 }
-
 .botonistos-submenu:hover {
   color: #c7c31c;
 }
