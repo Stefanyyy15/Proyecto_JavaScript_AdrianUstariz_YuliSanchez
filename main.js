@@ -34,16 +34,24 @@ const btnTraerTodosLosProductores = document.getElementById("productorBtn");
 const btnTraerTodosLosFecha = document.getElementById("fechaBtn");
 
 btnTraerTodosLosFilms.onclick = function () {
-  verPeliculasAll();
+  verTodo(urlPeliculas, urlImagenPelis, 600, "submenuFilms",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.title}<br>`
+  } );
 };
 btnTraerTodosLosDirectores.onclick = function () {
-  verPeliculasDirector();
+  verTodo(urlPeliculas, urlImagenPelis, 600, "submenuFilms",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Film:</span> ${todo.title}<br> <span style="color: #c7c31c;">Director:</span> ${todo.director}`
+  } );
 };
 btnTraerTodosLosProductores.onclick = function () {
-  verPeliculasProductor();
+  verTodo(urlPeliculas, urlImagenPelis, 600, "submenuFilms",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Film:</span> ${todo.title}<br> <span style="color: #c7c31c;">Productor:</span> ${todo.producer}`
+  } );
 };
 btnTraerTodosLosFecha.onclick = function () {
-  verPeliculasFecha();
+  verTodo(urlPeliculas, urlImagenPelis, 600, "submenuFilms",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Film:</span> ${todo.title}<br> <span style="color: #c7c31c;">Release Date:</span> ${todo.release_date}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 
@@ -55,16 +63,24 @@ const btnTraerTodosPopularidad = document.getElementById("allPopularidadBtn");
 const btnTraerTodosParametros = document.getElementById("allParametrosBtn");
 
 btnTraerTodosLosplanetas.onclick = function () {
-  verPlanetasAll();
+  verTodo(urlPlanets, urlImagenPlaneti, 600, "submenuPlanets",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`
+  } );
 };
 btnTraerTodosCondiciones.onclick = function () {
-  verPlanetasCondiciones();
+  verTodo(urlPlanets, urlImagenPlaneti, 600, "submenuPlanets",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Rotation Period:</span> ${todo.rotation_period}<br><span style="color: #c7c31c;">Orbital Period:</span> ${todo.orbital_period}<br><span style="color: #c7c31c;">Gravity:</span> ${todo.gravity}`
+  } );
 };
 btnTraerTodosPopularidad.onclick = function () {
-  verPlanetasPopularidad();
+  verTodo(urlPlanets, urlImagenPlaneti, 600, "submenuPlanets",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Population:</span> ${todo.population}<br><span style="color: #c7c31c;">Surface Water:</span> ${todo.surface_water}`
+  } );
 };
 btnTraerTodosParametros.onclick = function () {
-  verPlanetasParametros();
+  verTodo(urlPlanets, urlImagenPlaneti, 600, "submenuPlanets",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Diametro:</span> ${todo.diameter}<br><span style="color: #c7c31c;">Climate:</span> ${todo.climate}<br><span style="color: #c7c31c;">Terrain:</span> ${todo.terrain}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 
@@ -76,16 +92,24 @@ const btnTraerTodosLosEspecificaciones = document.getElementById("allSpecsBtn");
 const btnTraerTodosLosParametros = document.getElementById("allparametrosBtn");
 
 btnTraerTodosLosvehiculos.onclick = function () {
-  verVehiculosAll();
+  verTodo(urlVehicles, urlImagenCarrito, 500, "submenuVehicles",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`
+  } );
 };
 btnTraerTodosLosModelos.onclick = function () {
-  verModelo();
+  verTodo(urlVehicles, urlImagenCarrito, 500, "submenuVehicles",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Vehicle Class:</span> ${todo.vehicle_class}`
+  } );
 };
 btnTraerTodosLosEspecificaciones.onclick = function () {
-  verEspecificacion();
+  verTodo(urlVehicles, urlImagenCarrito, 500, "submenuVehicles",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Lenght:</span> ${todo.length}`
+  } );
 };
 btnTraerTodosLosParametros.onclick = function () {
-  verParametros();
+  verTodo(urlVehicles, urlImagenCarrito, 500, "submenuVehicles",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 // BOTONES DE LOS SUBMENUS PERSONAJES
@@ -96,16 +120,24 @@ const btnTraerTodosLosInformacion = document.getElementById("allinformacionBtn")
 const btnTraerTodosLosFisico = document.getElementById("allfisicoBtn");
 
 btnTraerTodosLosPersonajes.onclick = function () {
-  verPersonajesAll();
+  verTodo(urlPersonajes, urlImagenPersonita, 600, "submenuCharacters",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`
+  } );
 };
 btnTraerTodosLosMedidas.onclick = function () {
-  verMedidasAll();
+  verTodo(urlPersonajes, urlImagenPersonita, 600, "submenuCharacters",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Height:</span> ${todo.height}<br><span style="color: #c7c31c;">Mass:</span> ${todo.mass}`
+  } );
 };
 btnTraerTodosLosInformacion.onclick = function () {
-  verInformacionAll();
+  verTodo(urlPersonajes, urlImagenPersonita, 600, "submenuCharacters",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Birth Year:</span> ${todo.birth_year}<br><span style="color: #c7c31c;">Gender:</span> ${todo.gender}`
+  } );
 };
 btnTraerTodosLosFisico.onclick = function () {
-  verFisicoAll();
+  verTodo(urlPersonajes, urlImagenPersonita, 600, "submenuCharacters",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_color}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_color}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_color}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 // BOTONES DE LOS SUBMENUS ESPECIES
@@ -115,16 +147,24 @@ const btnTraerTodosLosVitalidad = document.getElementById("allvitalidadBtn");
 const btnTraerTodosLosFisicoEspecie = document.getElementById("allfisicoEspecieBtn");
 
 btnTraerTodosLosEspecies.onclick = function () {
-  verEspeciesAll();
+  verTodo(urlSpecies, urlImagenEspecie, 500, "submenuSpecies",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`
+  } );
 };
 btnTraerTodosLosInfoEspecies.onclick = function () {
-  verInfoEspecieAll();
+  verTodo(urlSpecies, urlImagenEspecie, 500, "submenuSpecies",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Classification:</span> ${todo.classification}<br><span style="color: #c7c31c;">Designation:</span> ${todo.designation}<br><span style="color: #c7c31c;">Language:</span> ${todo.language}`
+  } );
 };
 btnTraerTodosLosVitalidad.onclick = function () {
-  verVitalidadAll();
+  verTodo(urlSpecies, urlImagenEspecie, 500, "submenuSpecies",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Average Height:</span> ${todo.average_height}<br><span style="color: #c7c31c;">Average Lifespan:</span> ${todo.average_lifespan}`
+  } );
 };
 btnTraerTodosLosFisicoEspecie.onclick = function () {
-  verFisicoEspecieAll();
+  verTodo(urlSpecies, urlImagenEspecie, 500, "submenuSpecies",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_colors}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_colors}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_colors}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 
@@ -136,16 +176,24 @@ const btnTraerTodosLosNavesEspecificaciones = document.getElementById("allNavesS
 const btnTraerTodosLosNavesParametros = document.getElementById("allNavesparametrosBtn");
 
 btnTraerTodosLosNaves.onclick = function () {
-  verNavesAll();
+  verTodo(urlStarships, urlImagenNavesita, 400, "submenuStarships",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`
+  } );
 };
 btnTraerTodosLosNavesModelos.onclick = function () {
-  verNavesModeloAll();
+  verTodo(urlStarships, urlImagenNavesita, 400, "submenuStarships",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Cargo Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Starship Class:</span> ${todo.starship_class}`
+  } );
 };
 btnTraerTodosLosNavesEspecificaciones.onclick = function () {
-  verNavesEspecificacionesAll();
+  verTodo(urlStarships, urlImagenNavesita, 400, "submenuStarships",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Length:</span> ${todo.length}`
+  } );
 };
 btnTraerTodosLosNavesParametros.onclick = function () {
-  verNavesParametroAll();
+  verTodo(urlStarships, urlImagenNavesita, 400, "submenuStarships",function generarContenidoHtml(todo){
+    return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`
+  } );
 };
 //---------------------------------------------------------------------------------------------------------------------//
 
@@ -196,7 +244,7 @@ async function abriendoMenusitos(subMenuId) {
 
 //---------------------------------------------------------------------------------------------------------------------//
 
-//LLAMADOS DE PELICULAS
+//LLAMADOS DE TODO
 let urlImagenPelis = "https://mir-s3-cdn-cf.behance.net/project_modules/hd/b1baef46352143.58587967f05a1.gif";
 let urlImagenPlaneti = "https://cdna.artstation.com/p/assets/images/images/015/414/184/original/elie-servantie-animation-star-wars-empire-at-war.gif?1548246960";
 let urlImagenCarrito = "https://i.pinimg.com/originals/81/35/24/8135244303e3859332cd4124ef727a2c.gif";
@@ -204,632 +252,31 @@ let urlImagenPersonita = "https://jan-schlosser.de/wp-content/uploads/z_Pixel-Ar
 let urlImagenEspecie = "https://giffiles.alphacoders.com/212/212696.gif";
 let urlImagenNavesita = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/4b5683133022173.61b4a4cb0a205.gif";
 
-async function verPeliculasAll() {
+async function verTodo(url, urlImagen, tamañoImagen, susu, generarContenidoHtml) {
   const contenedor = document.querySelector(".contenedor");
   const imagenes = document.querySelector(".contenedor2");
-  const pelis = await peticion(urlPeliculas);
-  const listaPelis = pelis.results;
-  
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPelis;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-  
-  listaPelis.forEach(function (pelicula) {
-    const texto = document.createElement("p");
-    texto.classList.add("pelis_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${pelicula.title}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuFilms");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPeliculasDirector() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const pelis = await peticion(urlPeliculas);
-  const listaPelis = pelis.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPelis;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-  
-
-  listaPelis.forEach(function (pelicula) {
-    const texto = document.createElement("p");
-    texto.classList.add("pelis_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Film:</span> ${pelicula.title}<br> <span style="color: #c7c31c;">Director:</span> ${pelicula.director}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuFilms");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPeliculasProductor() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const pelis = await peticion(urlPeliculas);
-  const listaPelis = pelis.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPelis;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaPelis.forEach(function (pelicula) {
-    const texto = document.createElement("p");
-    texto.classList.add("pelis_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Film:</span> ${pelicula.title}<br> <span style="color: #c7c31c;">Productor:</span> ${pelicula.producer}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuFilms");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPeliculasFecha() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const pelis = await peticion(urlPeliculas);
-  const listaPelis = pelis.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPelis;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaPelis.forEach(function (pelicula) {
-    const texto = document.createElement("p");
-    texto.classList.add("pelis_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Film:</span> ${pelicula.title}<br> <span style="color: #c7c31c;">Release Date:</span> ${pelicula.release_date}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuFilms");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-// LLAMADOS DE PLANETAS
-
-async function verPlanetasAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const planetas = await peticion(urlPlanets);
-  const listaPlanetas = planetas.results;
+  const todoData = await peticion(url);
+  const listatodo = todoData.results;
 
   textoInicial.classList.add("texto_oculto");
   imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
+  const imagen = document.createElement("img");
   imagenes.innerHTML = "";
-  imagen.src = urlImagenPlaneti;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
   contenedor.innerHTML = "";
 
-  listaPlanetas.forEach(function (planeta) {
+  listatodo.forEach(function (todo) {
     const texto = document.createElement("p");
-    texto.classList.add("planetas_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${planeta.name}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuPlanets");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPlanetasCondiciones() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const planetas = await peticion(urlPlanets);
-  const listaPlanetas = planetas.results;
+    texto.classList.add("todo_list");
 
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPlaneti;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaPlanetas.forEach(function (planeta) {
-    const texto = document.createElement("p");
-    texto.classList.add("planetas_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${planeta.name}<br> <span style="color: #c7c31c;">Rotation Period:</span> ${planeta.rotation_period}<br><span style="color: #c7c31c;">Orbital Period:</span> ${planeta.orbital_period}<br><span style="color: #c7c31c;">Gravity:</span> ${planeta.gravity}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuPlanets");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPlanetasPopularidad() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const planetas = await peticion(urlPlanets);
-  const listaPlanetas = planetas.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPlaneti;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaPlanetas.forEach(function (planeta) {
-    const texto = document.createElement("p");
-    texto.classList.add("planetas_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${planeta.name}<br> <span style="color: #c7c31c;">Population:</span> ${planeta.population}<br><span style="color: #c7c31c;">Surface Water:</span> ${planeta.surface_water}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuPlanets");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verPlanetasParametros() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const planetas = await peticion(urlPlanets);
-  const listaPlanetas = planetas.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPlaneti;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaPlanetas.forEach(function (planeta) {
-    const texto = document.createElement("p");
-    texto.classList.add("planetas_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${planeta.name}<br> <span style="color: #c7c31c;">Diametro:</span> ${planeta.diameter}<br><span style="color: #c7c31c;">Climate:</span> ${planeta.climate}<br><span style="color: #c7c31c;">Terrain:</span> ${planeta.terrain}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuPlanets");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-// LLAMADOS DE VEHICULOS
-
-async function verVehiculosAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const vehiculo = await peticion(urlVehicles);
-  const listavehiculo = vehiculo.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenCarrito;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listavehiculo.forEach(function (vehiculo) {
-    const texto = document.createElement("p");
-    texto.classList.add("vehiculo_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${vehiculo.name}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuVehicles");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verModelo() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const vehiculo = await peticion(urlVehicles);
-  const listavehiculo = vehiculo.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenCarrito;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listavehiculo.forEach(function (vehiculo) {
-    const texto = document.createElement("p");
-    texto.classList.add("vehiculo_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${vehiculo.name}<br><span style="color: #c7c31c;">Model:</span> ${vehiculo.model}<br><span style="color: #c7c31c;">Manufacturer:</span> ${vehiculo.manufacturer}<br><span style="color: #c7c31c;">Vehicle Class:</span> ${vehiculo.vehicle_class}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuVehicles");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verEspecificacion() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const vehiculo = await peticion(urlVehicles);
-  const listavehiculo = vehiculo.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenCarrito;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listavehiculo.forEach(function (vehiculo) {
-    const texto = document.createElement("p");
-    texto.classList.add("vehiculo_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${vehiculo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${vehiculo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${vehiculo.cargo_capacity}<br><span style="color: #c7c31c;">Lenght:</span> ${vehiculo.length}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuVehicles");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verParametros() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const vehiculo = await peticion(urlVehicles);
-  const listavehiculo = vehiculo.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenCarrito;
-  imagen.width = 500  ;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listavehiculo.forEach(function (vehiculo) {
-    const texto = document.createElement("p");
-    texto.classList.add("vehiculo_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${vehiculo.name}<br><span style="color: #c7c31c;">Cost:</span> $${vehiculo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${vehiculo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${vehiculo.max_atmosphering_speed}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuVehicles");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-// LLAMADOS DE PERSONAJES
-
-async function verPersonajesAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const personajes = await peticion(urlPersonajes);
-  const listapersonajes = personajes.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPersonita;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listapersonajes.forEach(function (personajes) {
-    const texto = document.createElement("p");
-    texto.classList.add("personajes_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${personajes.name}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuCharacters");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verMedidasAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const personajes = await peticion(urlPersonajes);
-  const listapersonajes = personajes.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPersonita;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listapersonajes.forEach(function (personajes) {
-    const texto = document.createElement("p");
-    texto.classList.add("personajes_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${personajes.name}<br><span style="color: #c7c31c;">Height:</span> ${personajes.height}<br><span style="color: #c7c31c;">Mass:</span> ${personajes.mass}`;
+    texto.innerHTML = generarContenidoHtml(todo);
 
     contenedor.appendChild(texto);
   });
-  const submenu = document.getElementById("submenuCharacters");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
 }
-async function verInformacionAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const personajes = await peticion(urlPersonajes);
-  const listapersonajes = personajes.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPersonita;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listapersonajes.forEach(function (personajes) {
-    const texto = document.createElement("p");
-    texto.classList.add("personajes_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${personajes.name}<br><span style="color: #c7c31c;">Birth Year:</span> ${personajes.birth_year}<br><span style="color: #c7c31c;">Gender:</span> ${personajes.gender}`;
-
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuCharacters");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verFisicoAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const personajes = await peticion(urlPersonajes);
-  const listapersonajes = personajes.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenPersonita;
-  imagen.width = 600;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listapersonajes.forEach(function (personajes) {
-    const texto = document.createElement("p");
-    texto.classList.add("personajes_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${personajes.name}<br><span style="color: #c7c31c;">Hair color:</span> ${personajes.hair_color}<br><span style="color: #c7c31c;">Skin Color:</span> ${personajes.skin_color}<br><span style="color: #c7c31c;">Eye Color:</span> ${personajes.eye_color}`;
-
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuCharacters");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-// LLAMADOS DE ESPECIES
-
-async function verEspeciesAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const especies = await peticion(urlSpecies);
-  const listaespecies = especies.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenEspecie;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaespecies.forEach(function (especies) {
-    const texto = document.createElement("p");
-    texto.classList.add("especies_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${especies.name}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuSpecies");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verInfoEspecieAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const especies = await peticion(urlSpecies);
-  const listaespecies = especies.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenEspecie;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaespecies.forEach(function (especies) {
-    const texto = document.createElement("p");
-    texto.classList.add("especies_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${especies.name}<br><span style="color: #c7c31c;">Classification:</span> ${especies.classification}<br><span style="color: #c7c31c;">Designation:</span> ${especies.designation}<br><span style="color: #c7c31c;">Language:</span> ${especies.language}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuSpecies");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verFisicoEspecieAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const especies = await peticion(urlSpecies);
-  const listaespecies = especies.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenEspecie;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaespecies.forEach(function (especies) {
-    const texto = document.createElement("p");
-    texto.classList.add("personajes_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${especies.name}<br><span style="color: #c7c31c;">Hair color:</span> ${especies.hair_colors}<br><span style="color: #c7c31c;">Skin Color:</span> ${especies.skin_colors}<br><span style="color: #c7c31c;">Eye Color:</span> ${especies.eye_colors}`;
-
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuSpecies");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verVitalidadAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const especies = await peticion(urlSpecies);
-  const listaespecies = especies.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenEspecie;
-  imagen.width = 500;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listaespecies.forEach(function (especies) {
-    const texto = document.createElement("p");
-    texto.classList.add("especies_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${especies.name}<br><span style="color: #c7c31c;">Average Height:</span> ${especies.average_height}<br><span style="color: #c7c31c;">Average Lifespan:</span> ${especies.average_lifespan}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuSpecies");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
-
-// LLAMADOS DE NAVES
-
-async function verNavesAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const naves = await peticion(urlStarships);
-  const listanaves = naves.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenNavesita;
-  imagen.width = 400;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listanaves.forEach(function (naves) {
-    const texto = document.createElement("p");
-    texto.classList.add("naves_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${naves.name}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuStarships");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verNavesEspecificacionesAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const naves = await peticion(urlStarships);
-  const listanaves = naves.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenNavesita;
-  imagen.width = 400;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listanaves.forEach(function (naves) {
-    const texto = document.createElement("p");
-    texto.classList.add("naves_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${naves.name}<br><span style="color: #c7c31c;">Passengers:</span> ${naves.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${naves.cargo_capacity}<br><span style="color: #c7c31c;">Length:</span> ${naves.length}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuStarships");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verNavesModeloAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const naves = await peticion(urlStarships);
-  const listanaves = naves.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenNavesita;
-  imagen.width = 400;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listanaves.forEach(function (naves) {
-    const texto = document.createElement("p");
-    texto.classList.add("naves_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${naves.name}<br><span style="color: #c7c31c;">Model:</span> ${naves.model}<br><span style="color: #c7c31c;">Cargo Manufacturer:</span> ${naves.manufacturer}<br><span style="color: #c7c31c;">Starship Class:</span> ${naves.starship_class}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuStarships");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-async function verNavesParametroAll() {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const naves = await peticion(urlStarships);
-  const listanaves = naves.results;
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img")
-  imagenes.innerHTML = "";
-  imagen.src = urlImagenNavesita;
-  imagen.width = 400;
-  imagen.alt = "personajesStarWars";
-  imagenes.appendChild(imagen)
-  contenedor.innerHTML = "";
-
-  listanaves.forEach(function (naves) {
-    const texto = document.createElement("p");
-    texto.classList.add("naves_list");
-    texto.innerHTML = `<span style="color: #c7c31c;">Nombre:</span> ${naves.name}<br><span style="color: #c7c31c;">Cost:</span> $${naves.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${naves.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${naves.max_atmosphering_speed}`;
-    contenedor.appendChild(texto);
-  });
-  const submenu = document.getElementById("submenuStarships");
-  submenu.classList.remove("submenus-active")
-  submenu.classList.add("submenus")
-}
-//----------------------------------------------------------------------------------------------------------------------
