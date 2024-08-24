@@ -89,6 +89,7 @@ strong {
   position: absolute;
   left: 110px;
 }
+
 #submenuPlanets {
   position: absolute;
   left: 400px;
@@ -120,4 +121,48 @@ strong {
 }
 .botonistos-submenu:hover {
   color: #c7c31c;
+}
+
+@media (max-width: 1280px) {
+  #submenuFilms,
+  #submenuPlanets,
+  #submenuVehicles,
+  #submenuCharacters,
+  #submenuSpecies,
+  #submenuStarships {
+    position: relative;
+    left: 0;
+    margin-top: 35px;
+  }
+  .contenedor {
+    display: flex;
+    width: 90%;
+    align-items: center;
+  }
+  .contenedor2-active img {
+    width: 450px;
+  }
+}
+@media (max-width: 768px) {
+  #submenuFilms,
+  #submenuPlanets,
+  #submenuVehicles,
+  #submenuCharacters,
+  #submenuSpecies,
+  #submenuStarships {
+    position: relative;
+    left: 0;
+  }
+  .contenedor {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    margin-top: 15px;
+  }
+  .contenedor2-active img {
+    width: 250px;
+  }
+  .barrita {
+    margin-bottom: 15px;
+  }
 }
