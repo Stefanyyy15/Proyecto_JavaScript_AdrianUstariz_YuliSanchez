@@ -19,6 +19,9 @@ Para clonar y ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
 ```bash
 git clone https://github.com/Stefanyyy15/Proyecto_JavaScript_AdrianUstariz_YuliSanchez
+```
+
+```bash
 cd Proyecto_JavaScript_AdrianUstariz_YuliSanchez
 ```
 
@@ -27,8 +30,7 @@ cd Proyecto_JavaScript_AdrianUstariz_YuliSanchez
 > Todo el programa debe estar dentro de una misma carpeta y debe ejecutarse desde el index.html
 
 ![StarWarsInterfaz](/backstage/interfaz.png)
-^[Imagen principal de la pagina web​]
-
+Imagen principal de la pagina web​
 
 ## Funcionalidades
 
@@ -38,7 +40,7 @@ cd Proyecto_JavaScript_AdrianUstariz_YuliSanchez
 
 ![StarWarsInterfaz](/backstage/films.png)
 
-Dentro del apartado de peliculas, podemos encontrar filtro por productores encargados, productores encargados y fechas de lanzamiento de cada una de las peliculas.
+Dentro del apartado de films, podemos encontrar filtro por productores encargados, productores encargados y fechas de lanzamiento de cada una de las peliculas.
 
 Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
 
@@ -46,13 +48,63 @@ Una vez se de click en cualquiera de estas opciones, se va a desplegar la inform
 
 ### Planets 🪐
 
+> Esta vez al dar click la API traerá la información de todos los planetas que han aparecido en Star Wars hasta Force Awakens.
+
+![StarWarsInterfaz](/backstage/planets.png)
+
+Dentro del apartado de planets, podemos encontrar filtro por sus condiciones de vida, sus habitantes y los parametros del planeta.
+
+Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
+
+![StarWarsInterfaz](/backstage/planetsInterfaz.png)
+
 ### Vehicles 🚗
+
+> Esta vez al dar click la API traerá la información de todos los vehiculos usados en la saga hasta Star Wars Force Awakens.
+
+![StarWarsInterfaz](/backstage/vehicles.png)
+
+Dentro del apartado de vehicles, podemos encontrar filtro por sus caracteristicas, especificaciones y modelos.
+
+Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
+
+![StarWarsInterfaz](/backstage/vehiclesInterfaz.png)
 
 ### Characters 🤺
 
+> Esta vez al dar click la API traerá la información de todos los personajes que aparecieron en la saga hasta Star Wars Force Awakens.
+
+![StarWarsInterfaz](/backstage/personajes.png)
+
+Dentro del apartado de characters, podemos encontrar filtro por sus caracteristicas, información, y rasgos fisicos.
+
+Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
+
+![StarWarsInterfaz](/backstage/personajesInterfaz.png)
+
 ### Species 👾
 
+> Esta vez al dar click la API traerá la información de todos las especies que aparecieron en la saga hasta Star Wars Force Awakens.
+
+![StarWarsInterfaz](/backstage/species.png)
+
+Dentro del apartado de species, podemos encontrar filtro por su información, rasgos fisicos, parametros vitales.
+
+Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
+
+![StarWarsInterfaz](/backstage/speciesInterfaz.png)
+
 ### Starhips 🚀
+
+> Esta vez al dar click la API traerá la información de todos las naves que aparecieron en la saga hasta Star Wars Force Awakens.
+
+![StarWarsInterfaz](/starships/species.png)
+
+Dentro del apartado de planetas, podemos encontrar filtro por sus especificaciones, modelos y caracteristicas.
+
+Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
+
+![StarWarsInterfaz](/backstage/starshipsInterfaz.png)
 
 ¡Las contribuciones son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
 _Puedes contribuir creando un fork del repositorio y enviando un pull request._
