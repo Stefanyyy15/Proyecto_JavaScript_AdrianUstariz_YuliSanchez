@@ -74,7 +74,7 @@ Una vez se de click en cualquiera de estas opciones, se va a desplegar la inform
 
 > Esta vez al dar click la API traerá la información de todos los personajes que aparecieron en la saga hasta Star Wars Force Awakens.
 
-![StarWarsInterfaz](/backstage/personajes.png)
+![StarWarsInterfaz](/backstage/personajes.PNG)
 
 Dentro del apartado de characters, podemos encontrar filtro por sus caracteristicas, información, y rasgos fisicos.
 
@@ -98,9 +98,9 @@ Una vez se de click en cualquiera de estas opciones, se va a desplegar la inform
 
 > Esta vez al dar click la API traerá la información de todos las naves que aparecieron en la saga hasta Star Wars Force Awakens.
 
-![StarWarsInterfaz](/starships/species.png)
+![StarWarsInterfaz](/backstage/starships.png)
 
-Dentro del apartado de planetas, podemos encontrar filtro por sus especificaciones, modelos y caracteristicas.
+Dentro del apartado de naves, podemos encontrar filtro por sus especificaciones, modelos y caracteristicas.
 
 Una vez se de click en cualquiera de estas opciones, se va a desplegar la información en la plantilla y se pondrá una imagen acorder a la categoria.
 
