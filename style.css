@@ -123,6 +123,19 @@ strong {
   color: #c7c31c;
 }
 
+@media (max-width: 1680px) {
+  #submenuFilms,
+  #submenuPlanets,
+  #submenuVehicles,
+  #submenuCharacters,
+  #submenuSpecies,
+  #submenuStarships {
+    position: relative;
+    left: 0;
+    margin-top: 35px;
+  }
+}
+
 @media (max-width: 1280px) {
   #submenuFilms,
   #submenuPlanets,
