@@ -24,6 +24,9 @@ git clone https://github.com/Stefanyyy15/Proyecto_JavaScript_AdrianUstariz_YuliS
 ```bash
 cd Proyecto_JavaScript_AdrianUstariz_YuliSanchez
 ```
+```bash
+code .
+```
 
 ## Uso
 
