@@ -34,18 +34,18 @@ const btnTraerTodosLosProductores = document.getElementById("productorBtn");
 const btnTraerTodosLosFecha = document.getElementById("fechaBtn");
 
 btnTraerTodosLosFilms.onclick = function () {
-  verTodo(
+  Pelis(
     urlPeliculas,
     urlImagenPelis,
     600,
     "submenuFilms",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.title}<br>`;
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.title}<br>`;
     }
   );
 };
 btnTraerTodosLosDirectores.onclick = function () {
-  verTodo(
+  Pelis(
     urlPeliculas,
     urlImagenPelis,
     600,
@@ -56,7 +56,7 @@ btnTraerTodosLosDirectores.onclick = function () {
   );
 };
 btnTraerTodosLosProductores.onclick = function () {
-  verTodo(
+  Pelis(
     urlPeliculas,
     urlImagenPelis,
     600,
@@ -67,7 +67,7 @@ btnTraerTodosLosProductores.onclick = function () {
   );
 };
 btnTraerTodosLosFecha.onclick = function () {
-  verTodo(
+  Pelis(
     urlPeliculas,
     urlImagenPelis,
     600,
@@ -93,8 +93,8 @@ btnTraerTodosLosplanetas.onclick = function () {
     600,
     "submenuPlanets",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
+    },7
   );
 };
 btnTraerTodosCondiciones.onclick = function () {
@@ -104,8 +104,8 @@ btnTraerTodosCondiciones.onclick = function () {
     600,
     "submenuPlanets",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Rotation Period:</span> ${todo.rotation_period}<br><span style="color: #c7c31c;">Orbital Period:</span> ${todo.orbital_period}<br><span style="color: #c7c31c;">Gravity:</span> ${todo.gravity}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Rotation Period:</span> ${todo.rotation_period}<br><span style="color: #c7c31c;">Orbital Period:</span> ${todo.orbital_period}<br><span style="color: #c7c31c;">Gravity:</span> ${todo.gravity}`;
+    },7
   );
 };
 btnTraerTodosPopularidad.onclick = function () {
@@ -115,8 +115,8 @@ btnTraerTodosPopularidad.onclick = function () {
     600,
     "submenuPlanets",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Population:</span> ${todo.population}<br><span style="color: #c7c31c;">Surface Water:</span> ${todo.surface_water}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Population:</span> ${todo.population}<br><span style="color: #c7c31c;">Surface Water:</span> ${todo.surface_water}`;
+    },7
   );
 };
 btnTraerTodosParametros.onclick = function () {
@@ -126,8 +126,8 @@ btnTraerTodosParametros.onclick = function () {
     600,
     "submenuPlanets",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br> <span style="color: #c7c31c;">Diametro:</span> ${todo.diameter}<br><span style="color: #c7c31c;">Climate:</span> ${todo.climate}<br><span style="color: #c7c31c;">Terrain:</span> ${todo.terrain}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Diametro:</span> ${todo.diameter}<br><span style="color: #c7c31c;">Climate:</span> ${todo.climate}<br><span style="color: #c7c31c;">Terrain:</span> ${todo.terrain}`;
+    },7
   );
 };
 //---------------------------------------------------------------------------------------------------------------------//
@@ -146,8 +146,8 @@ btnTraerTodosLosvehiculos.onclick = function () {
     500,
     "submenuVehicles",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
+    },5
   );
 };
 btnTraerTodosLosModelos.onclick = function () {
@@ -157,8 +157,8 @@ btnTraerTodosLosModelos.onclick = function () {
     500,
     "submenuVehicles",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Vehicle Class:</span> ${todo.vehicle_class}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Vehicle Class:</span> ${todo.vehicle_class}`;
+    },5
   );
 };
 btnTraerTodosLosEspecificaciones.onclick = function () {
@@ -168,8 +168,8 @@ btnTraerTodosLosEspecificaciones.onclick = function () {
     500,
     "submenuVehicles",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Lenght:</span> ${todo.length}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Lenght:</span> ${todo.length}`;
+    },5
   );
 };
 btnTraerTodosLosParametros.onclick = function () {
@@ -179,8 +179,8 @@ btnTraerTodosLosParametros.onclick = function () {
     500,
     "submenuVehicles",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
+    },5
   );
 };
 //---------------------------------------------------------------------------------------------------------------------//
@@ -199,8 +199,8 @@ btnTraerTodosLosPersonajes.onclick = function () {
     600,
     "submenuCharacters",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
+    },10
   );
 };
 btnTraerTodosLosMedidas.onclick = function () {
@@ -210,8 +210,8 @@ btnTraerTodosLosMedidas.onclick = function () {
     600,
     "submenuCharacters",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Height:</span> ${todo.height}<br><span style="color: #c7c31c;">Mass:</span> ${todo.mass}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Height:</span> ${todo.height}<br><span style="color: #c7c31c;">Mass:</span> ${todo.mass}`;
+    },10
   );
 };
 btnTraerTodosLosInformacion.onclick = function () {
@@ -221,8 +221,8 @@ btnTraerTodosLosInformacion.onclick = function () {
     600,
     "submenuCharacters",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Birth Year:</span> ${todo.birth_year}<br><span style="color: #c7c31c;">Gender:</span> ${todo.gender}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Birth Year:</span> ${todo.birth_year}<br><span style="color: #c7c31c;">Gender:</span> ${todo.gender}`;
+    }, 10
   );
 };
 btnTraerTodosLosFisico.onclick = function () {
@@ -232,8 +232,9 @@ btnTraerTodosLosFisico.onclick = function () {
     600,
     "submenuCharacters",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_color}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_color}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_color}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_color}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_color}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_color}`;
+    },
+    10
   );
 };
 //---------------------------------------------------------------------------------------------------------------------//
@@ -253,8 +254,8 @@ btnTraerTodosLosEspecies.onclick = function () {
     500,
     "submenuSpecies",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
+    },5
   );
 };
 btnTraerTodosLosInfoEspecies.onclick = function () {
@@ -264,8 +265,8 @@ btnTraerTodosLosInfoEspecies.onclick = function () {
     500,
     "submenuSpecies",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Classification:</span> ${todo.classification}<br><span style="color: #c7c31c;">Designation:</span> ${todo.designation}<br><span style="color: #c7c31c;">Language:</span> ${todo.language}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Classification:</span> ${todo.classification}<br><span style="color: #c7c31c;">Designation:</span> ${todo.designation}<br><span style="color: #c7c31c;">Language:</span> ${todo.language}`;
+    },5
   );
 };
 btnTraerTodosLosVitalidad.onclick = function () {
@@ -275,8 +276,8 @@ btnTraerTodosLosVitalidad.onclick = function () {
     500,
     "submenuSpecies",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Average Height:</span> ${todo.average_height}<br><span style="color: #c7c31c;">Average Lifespan:</span> ${todo.average_lifespan}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Average Height:</span> ${todo.average_height}<br><span style="color: #c7c31c;">Average Lifespan:</span> ${todo.average_lifespan}`;
+    },5
   );
 };
 btnTraerTodosLosFisicoEspecie.onclick = function () {
@@ -286,8 +287,8 @@ btnTraerTodosLosFisicoEspecie.onclick = function () {
     500,
     "submenuSpecies",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_colors}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_colors}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_colors}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_colors}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_colors}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_colors}`;
+    },5
   );
 };
 //---------------------------------------------------------------------------------------------------------------------//
@@ -310,8 +311,8 @@ btnTraerTodosLosNaves.onclick = function () {
     400,
     "submenuStarships",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
+    },5
   );
 };
 btnTraerTodosLosNavesModelos.onclick = function () {
@@ -321,8 +322,8 @@ btnTraerTodosLosNavesModelos.onclick = function () {
     400,
     "submenuStarships",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Cargo Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Starship Class:</span> ${todo.starship_class}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Cargo Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Starship Class:</span> ${todo.starship_class}`;
+    },5
   );
 };
 btnTraerTodosLosNavesEspecificaciones.onclick = function () {
@@ -332,8 +333,8 @@ btnTraerTodosLosNavesEspecificaciones.onclick = function () {
     400,
     "submenuStarships",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Length:</span> ${todo.length}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Length:</span> ${todo.length}`;
+    },5
   );
 };
 btnTraerTodosLosNavesParametros.onclick = function () {
@@ -343,8 +344,8 @@ btnTraerTodosLosNavesParametros.onclick = function () {
     400,
     "submenuStarships",
     function generarContenidoHtml(todo) {
-      return `<span style="color: #c7c31c;">Nombre:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
-    }
+      return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
+    },5
   );
 };
 //---------------------------------------------------------------------------------------------------------------------//
@@ -372,12 +373,12 @@ btnStarships.onclick = function () {
 
 //--------------------------------------------------------------------------------------------------------------------//
 
-let urlPersonajes = "https://swapi.py4e.com/api/people";
+let urlPersonajes = "https://swapi.py4e.com/api/people?page=";
 let urlPeliculas = "https://swapi.py4e.com/api/films";
-let urlPlanets = "https://swapi.py4e.com/api/planets";
-let urlVehicles = "https://swapi.py4e.com/api/vehicles";
-let urlSpecies = "https://swapi.py4e.com/api/species";
-let urlStarships = "https://swapi.py4e.com/api/starships";
+let urlPlanets = "https://swapi.py4e.com/api/planets?page=";
+let urlVehicles = "https://swapi.py4e.com/api/vehicles?page=";
+let urlSpecies = "https://swapi.py4e.com/api/species?page=";
+let urlStarships = "https://swapi.py4e.com/api/starships?page=";
 
 //---------------------------------------------------------------------------------------------------------------------//
 
@@ -415,37 +416,78 @@ let urlImagenEspecie = "https://giffiles.alphacoders.com/212/212696.gif";
 let urlImagenNavesita =
   "https://mir-s3-cdn-cf.behance.net/project_modules/disp/4b5683133022173.61b4a4cb0a205.gif";
 
-async function verTodo(
-  url,
-  urlImagen,
-  tamañoImagen,
-  susu,
-  generarContenidoHtml
-) {
-  const contenedor = document.querySelector(".contenedor");
-  const imagenes = document.querySelector(".contenedor2");
-  const todoData = await peticion(url);
-  const listatodo = todoData.results;
-
-  textoInicial.classList.add("texto_oculto");
-  imagenes.classList.add("contenedor2-active");
-  const imagen = document.createElement("img");
-  imagenes.innerHTML = "";
-  imagen.src = urlImagen;
-  imagen.width = tamañoImagen;
-  imagenes.appendChild(imagen);
-  contenedor.innerHTML = "";
-
-  listatodo.forEach(function (todo) {
-    const texto = document.createElement("p");
-    texto.classList.add("todo_list");
-
-    texto.innerHTML = generarContenidoHtml(todo);
-
-    contenedor.appendChild(texto);
-  });
-
-  const submenu = document.getElementById(susu);
-  submenu.classList.remove("submenus-active");
-  submenu.classList.add("submenus");
-}
+  async function verTodo(
+    url,
+    urlImagen,
+    tamañoImagen,
+    susu,
+    generarContenidoHtml,
+    num
+  ) {
+    const contenedor = document.querySelector(".contenedor");
+    const imagenes = document.querySelector(".contenedor2");
+  
+    let resultados = [];
+    try{
+      for (let i = 1; i < num; i++) {
+        const todoData = await peticion(url + i);
+        resultados = resultados.concat(todoData.results);
+      }
+  
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+  
+      contenedor.innerHTML = "";
+      resultados.forEach(function (todo) {
+        const texto = document.createElement("p");
+        texto.classList.add("todo_list");
+        texto.innerHTML = generarContenidoHtml(todo);
+        contenedor.appendChild(texto);
+      });
+  
+      const submenu = document.getElementById(susu);
+      submenu.classList.remove("submenus-active");
+      submenu.classList.add("submenus");
+    } catch(error){
+      console.log("No hay mas datos")
+    }
+  }
+  async function Pelis(
+    url,
+    urlImagen,
+    tamañoImagen,
+    susu,
+    generarContenidoHtml
+  ) {
+    const contenedor = document.querySelector(".contenedor");
+    const imagenes = document.querySelector(".contenedor2");
+    const todoData = await peticion(url);
+    const listatodo = todoData.results;
+  
+    textoInicial.classList.add("texto_oculto");
+    imagenes.classList.add("contenedor2-active");
+    const imagen = document.createElement("img");
+    imagenes.innerHTML = "";
+    imagen.src = urlImagen;
+    imagen.width = tamañoImagen;
+    imagenes.appendChild(imagen);
+    contenedor.innerHTML = "";
+  
+    listatodo.forEach(function (todo) {
+      const texto = document.createElement("p");
+      texto.classList.add("todo_list");
+  
+      texto.innerHTML = generarContenidoHtml(todo);
+  
+      contenedor.appendChild(texto);
+    });
+  
+    const submenu = document.getElementById(susu);
+    submenu.classList.remove("submenus-active");
+    submenu.classList.add("submenus");
+  }
