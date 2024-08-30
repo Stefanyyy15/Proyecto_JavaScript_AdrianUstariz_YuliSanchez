@@ -164,7 +164,7 @@ document
         urlPeliculas,
         selectedMovie,
         urlImagenPelis,
-        600
+        500
       );
     } else {
       console.log("No movie selected");
@@ -468,7 +468,7 @@ document.getElementById("verMasPlanets").addEventListener("click", function () {
       urlPeliculas,
       selectedMovie,
       urlImagenPlaneti,
-      600
+      500
     );
   } else {
     console.log("No movie selected");
@@ -551,34 +551,38 @@ const btnTraerTodosLosModelos = document.getElementById("allModeloBtn");
 const btnTraerTodosLosEspecificaciones = document.getElementById("allSpecsBtn");
 const btnTraerTodosLosParametros = document.getElementById("allparametrosBtn");
 const btnPilots = document.getElementById("fasterBtn")
+const btnExpensive = document.getElementById("expensiveVehiclesBtn")
 
-btnPilots.onclick = function(){
-  fasterVehicles(5, urlVehicles,"submenuVehicles",urlImagenCarrito, 600 )
-}
-
-async function fasterVehicles(num, url, susu, urlImagen, tamañoImagen){
+btnExpensive.addEventListener("click", function(){
+  expensiveVehicles(4, urlVehicles,"submenuVehicles",urlImagenCarrito, 500)
+})
+async function expensiveVehicles(num, url, susu, urlImagen, tamañoImagen) {
   const contenedor = document.querySelector(".contenedor");
   const imagenes = document.querySelector(".contenedor2");
   let resultados = [];
   
-  async function peticion(url) {
-    const response = await fetch(url);
-    return response.json();
-  }
-
   for (let i = 1; i <= num; i++) { 
-    const todoData = await peticion(url + i);
-    resultados = resultados.concat(todoData.results);
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
   }
 
-  resultados.sort((a, b) => b.max_atmosphering_speed - a.max_atmosphering_speed);
+  const filtrados = resultados.filter(nave => 
+      nave.cost_in_credits !== "unknown" && nave.cost_in_credits !== null
+  ).map(nave => ({
+      ...nave,
+      cost_in_credits: Number(nave.cost_in_credits)
+  }));
+
+  filtrados.sort((a, b) => b.cost_in_credits - a.cost_in_credits);
+
+  const top3 = filtrados.slice(0, 3);
 
   contenedor.innerHTML = '';
-
-  resultados.forEach(function(item) {
-    const p = document.createElement('p');
-    p.innerHTML = `Model: ${item.model} | Speed: ${item.max_atmosphering_speed}`;
-    contenedor.appendChild(p);
+  
+  top3.forEach(function(nave) {
+      const p = document.createElement('p');
+      p.innerHTML = `<span style="color: yellow;">Model:</span> ${nave.model} | <span style="color: yellow;">Cost in Credits:</span> ${nave.cost_in_credits}`;
+      contenedor.appendChild(p);
   });
 
   textoInicial.classList.add("texto_oculto");
@@ -593,7 +597,39 @@ async function fasterVehicles(num, url, susu, urlImagen, tamañoImagen){
   submenu.classList.remove("submenus-active");
   submenu.classList.add("submenus");
 }
+btnPilots.onclick = function(){
+  fasterVehicles(4, urlVehicles,"submenuVehicles",urlImagenCarrito, 500 )
+}
+async function fasterVehicles(num, url, susu, urlImagen, tamañoImagen){
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+  for (let i = 1; i <= num; i++) { 
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
+  }
+  resultados.sort((a, b) => b.max_atmosphering_speed - a.max_atmosphering_speed);
+  const top3 = resultados.slice(0, 3);  
 
+  contenedor.innerHTML = '';
+  top3.forEach(function(item) {
+      const p = document.createElement('p');
+      p.innerHTML = `<span style="color: yellow;">Model:</span> ${item.model} | <span style="color: yellow;">Speed:</span> ${item.max_atmosphering_speed}`;
+      contenedor.appendChild(p);
+  });
+
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
 btnTraerTodosLosvehiculos.onclick = function () {
   verTodo(
     urlVehicles,
@@ -643,15 +679,13 @@ btnTraerTodosLosParametros.onclick = function () {
   );
 };
 
-document
-  .getElementById("verMasVehicles")
-  .addEventListener("click", function () {
+document.getElementById("verMasVehicles").addEventListener("click", function () {
     if (selectedMovie) {
       llamarVehiculosPorPeliculas(
         urlPeliculas,
         selectedMovie,
         urlImagenCarrito,
-        600
+        400
       );
     } else {
       console.log("No movie selected");
@@ -730,9 +764,78 @@ peliculas.forEach(function (pelicula) {
 
 const btnTraerTodosLosPersonajes = document.getElementById("allpersonajesBtn");
 const btnTraerTodosLosMedidas = document.getElementById("allmedidasBtn");
-const btnTraerTodosLosInformacion =
-  document.getElementById("allinformacionBtn");
+const btnTraerTodosLosInformacion = document.getElementById("allinformacionBtn");
 const btnTraerTodosLosFisico = document.getElementById("allfisicoBtn");
+const btnTallCharacters = document.getElementById("tallCharacters");
+const btnbigCharacters = document.getElementById("bigCharacters")
+
+btnbigCharacters.addEventListener("click", function(){
+  btnbiggerCharacters(4, urlPersonajes, "submenuCharacters", urlImagenPersonita, 400)
+
+})
+btnTallCharacters.addEventListener("click", function(){
+  tallCharacters(4, urlPersonajes, "submenuCharacters", urlImagenPersonita, 400)
+})
+
+async function btnbiggerCharacters(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+  for (let i = 1; i <= num; i++) { 
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
+  }
+  resultados.sort((a, b) => b.mass - a.mass);
+  const top3 = resultados.slice(0, 3);
+  contenedor.innerHTML = '';
+  top3.forEach(personaje => {
+    const p = document.createElement('p');
+    p.innerHTML = `<span style="color: yellow;">Name:</span> ${personaje.name} | <span style="color: yellow;">Mass:</span> ${personaje.mass}`;
+    contenedor.appendChild(p);
+  });
+  
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
+
+async function tallCharacters(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+  for (let i = 1; i <= num; i++) { 
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
+  }
+  resultados.sort((a, b) => b.height - a.height);
+  const top3 = resultados.slice(0, 3);
+  contenedor.innerHTML = '';
+  top3.forEach(personaje => {
+    const p = document.createElement('p');
+    p.innerHTML = `<span style="color: yellow;">Name:</span> ${personaje.name} | <span style="color: yellow;">Height:</span> ${personaje.height}`;
+    contenedor.appendChild(p);
+  });
+  
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
 
 btnTraerTodosLosPersonajes.onclick = function () {
   verTodo(
@@ -782,16 +885,110 @@ btnTraerTodosLosFisico.onclick = function () {
     10
   );
 };
+
 //---------------------------------------------------------------------------------------------------------------------//
 // BOTONES DE LOS SUBMENUS ESPECIES
 const btnTraerTodosLosEspecies = document.getElementById("allespeciesBtn");
-const btnTraerTodosLosInfoEspecies =
-  document.getElementById("allinfoEspeciesBtn");
+const btnTraerTodosLosInfoEspecies = document.getElementById("allinfoEspeciesBtn");
 const btnTraerTodosLosVitalidad = document.getElementById("allvitalidadBtn");
-const btnTraerTodosLosFisicoEspecie = document.getElementById(
-  "allfisicoEspecieBtn"
-);
+const btnTraerTodosLosFisicoEspecie = document.getElementById("allfisicoEspecieBtn");
+const btnTallestSpecies = document.getElementById("tallestSpecies")
+const btnHomeworldSpecies = document.getElementById("homeworldSpecies")
 
+btnHomeworldSpecies.addEventListener("click", function(){
+  homeworld(4, urlSpecies, "submenuSpecies", urlImagenEspecie, 400)
+})
+
+btnTallestSpecies.addEventListener("click", function(){
+  tallestSpecie(4, urlSpecies, "submenuSpecies", urlImagenEspecie, 400)
+})
+
+async function homeworld(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+
+  async function fetchData(apiUrl) {
+    const response = await fetch(apiUrl);
+    return response.json();
+  }
+
+  for (let i = 1; i <= num; i++) { 
+    const todoData = await fetchData(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+  const especiesConPlanetas = [];
+  for (const especie of resultados) {
+    let homeworldName = 'Unknown'; // Valor por defecto
+    if (especie.homeworld) {
+      const homeworldData = await fetchData(especie.homeworld);
+      homeworldName = homeworldData.name;
+    }
+    especiesConPlanetas.push({
+      name: especie.name,
+      homeworld: homeworldName
+    });
+  }
+  contenedor.innerHTML = '';
+  especiesConPlanetas.forEach(specie => {
+    const p = document.createElement('p');
+    p.innerHTML = `<span style="color: yellow;">Species:</span> ${specie.name} | <span style="color: yellow;">Homeworld:</span> ${specie.homeworld}`;
+    contenedor.appendChild(p);
+  });
+
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
+
+async function tallestSpecie(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+  
+  for (let i = 1; i <= num; i++) { 
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
+  }
+  
+  resultados = resultados
+    .filter(specie => !isNaN(parseFloat(specie.average_height)))
+    .map(specie => ({
+      ...specie,
+      average_height: parseFloat(specie.average_height)
+    }))
+    .sort((a, b) => b.average_height - a.average_height);
+  
+  const top5 = resultados.slice(0, 5);
+  
+  contenedor.innerHTML = '';
+  
+  top5.forEach(specie => {
+    const p = document.createElement('p');
+    p.innerHTML = `<span style="color: yellow;">Name:</span> ${specie.name} | <span style="color: yellow;">Average Height:</span> ${specie.average_height}`;
+    contenedor.appendChild(p);
+  });
+  
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
 btnTraerTodosLosEspecies.onclick = function () {
   verTodo(
     urlSpecies,
@@ -847,7 +1044,7 @@ document.getElementById("verMasSpecies").addEventListener("click", function () {
       urlPeliculas,
       selectedMovie,
       urlImagenEspecie,
-      600
+      400
     );
   } else {
     console.log("No movie selected");
@@ -933,6 +1130,117 @@ const btnTraerTodosLosNavesEspecificaciones =
 const btnTraerTodosLosNavesParametros = document.getElementById(
   "allNavesparametrosBtn"
 );
+const pilotsBtn = document.getElementById("pilotsBtn");
+
+const capacidadBtn = document.getElementById("capacidadBtn")
+
+capacidadBtn.addEventListener("click", function(){
+  traerTop5NavesConMasPasajeros(4, urlStarships, "submenuSpecies", urlImagenNavesita, 300)
+})
+
+async function traerTop5NavesConMasPasajeros(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+
+  async function fetchData(apiUrl) {
+    const response = await fetch(apiUrl);
+    return response.json();
+  }
+
+  // Obtener datos de naves
+  for (let i = 1; i <= num; i++) { 
+    const todoData = await fetchData(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+
+  const navesConCapacidad = resultados.map(nave => {
+    return {
+      name: nave.name,
+      passengerCapacity: parseInt(nave.passengers) || 0 
+    };
+  });
+
+  navesConCapacidad.sort((a, b) => b.passengerCapacity - a.passengerCapacity);
+
+  const top5Naves = navesConCapacidad.slice(0, 5);
+
+  contenedor.innerHTML = '';
+
+  top5Naves.forEach(nave => {
+    const p = document.createElement('p');
+    p.innerHTML = `<span style="color: yellow;">Ship:</span> ${nave.name} | <span style="color: yellow;">Passenger Capacity:</span> ${nave.passengerCapacity}`;
+    contenedor.appendChild(p);
+  });
+
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
+
+pilotsBtn.addEventListener("click", function(){
+  traerPilotos(4, urlStarships, "submenuSpecies", urlImagenNavesita, 300)
+})
+
+async function traerPilotos(num, url, susu, urlImagen, tamañoImagen) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  let resultados = [];
+
+  async function fetchData(apiUrl) {
+    const response = await fetch(apiUrl);
+    return response.json();
+  }
+
+  for (let i = 1; i <= num; i++) { 
+    const todoData = await fetchData(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+
+  const navesConPilotos = [];
+  for (const nave of resultados) {
+    let pilotosNombres = [];
+    if (nave.pilots.length > 0) {
+      pilotosNombres = await Promise.all(nave.pilots.map(async (pilotUrl) => {
+        const pilotData = await fetchData(pilotUrl);
+        return pilotData.name;
+      }));
+    }
+    navesConPilotos.push({
+      name: nave.name,
+      pilots: pilotosNombres
+    });
+  }
+
+  contenedor.innerHTML = '';
+
+  navesConPilotos.forEach(nave => {
+    const p = document.createElement('p');
+    const pilotosList = nave.pilots.length > 0 ? nave.pilots.join(', ') : 'No pilots';
+    p.innerHTML = `<span style="color: yellow;">Ship:</span> ${nave.name} | <span style="color: yellow;">Pilots:</span> ${pilotosList}`;
+    contenedor.appendChild(p);
+  });
+
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
 
 btnTraerTodosLosNaves.onclick = function () {
   verTodo(
@@ -983,15 +1291,13 @@ btnTraerTodosLosNavesParametros.onclick = function () {
   );
 };
 
-document
-  .getElementById("verMasStarships")
-  .addEventListener("click", function () {
+document.getElementById("verMasStarships").addEventListener("click", function () {
     if (selectedMovie) {
       llamarStashipsPorPeliculas(
         urlPeliculas,
         selectedMovie,
         urlImagenNavesita,
-        600
+        400
       );
     } else {
       console.log("No movie selected");
@@ -1103,25 +1409,27 @@ let urlStarships = "https://swapi.py4e.com/api/starships?page=";
 
 async function abriendoMenusitos(subMenuId) {
   const activeSubmenu = document.querySelector(".submenus-active");
-  if (activeSubmenu && activeSubmenu.id !== subMenuId) {
-    activeSubmenu.classList.remove("submenus-active");
-    activeSubmenu.classList.add("submenus");
-  }
-  const submenuVerMas = document.getElementById("verMasFilms");
-  if (
-    submenuVerMas &&
-    submenuVerMas.classList.contains("submenusVerMas-active")
-  ) {
-    submenuVerMas.classList.remove("submenusVerMas-active");
-    submenuVerMas.classList.add("submenusVerMas");
-  }
+
   const btn = document.getElementById(subMenuId);
-  if (btn.classList.contains("submenus-active")) {
-    btn.classList.remove("submenus-active");
-    btn.classList.add("submenus");
+  const isCurrentlyActive = btn.classList.contains("submenus-active");
+
+  if (activeSubmenu && activeSubmenu.id !== subMenuId) {
+      activeSubmenu.classList.remove("submenus-active");
+      activeSubmenu.classList.add("submenus");
+  }
+
+  const submenuVerMas = document.getElementById("verMasFilms");
+  if (submenuVerMas && submenuVerMas.classList.contains("submenusVerMas-active")) {
+      submenuVerMas.classList.remove("submenusVerMas-active");
+      submenuVerMas.classList.add("submenusVerMas");
+  }
+
+  if (isCurrentlyActive) {
+      btn.classList.remove("submenus-active");
+      btn.classList.add("submenus");
   } else {
-    btn.classList.remove("submenus");
-    btn.classList.add("submenus-active");
+      btn.classList.remove("submenus");
+      btn.classList.add("submenus-active");
   }
 }
 
