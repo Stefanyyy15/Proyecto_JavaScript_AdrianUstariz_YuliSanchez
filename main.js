@@ -1062,67 +1062,118 @@ async function Pelis(url, urlImagen, tamañoImagen, susu, generarContenidoHtml) 
   submenu.classList.add("submenus");
 }
 
-// Llamados especificos de personajes -------------------------------------------------------------------------------
+// Llamados especificos de planetas -------------------------------------------------------------------------------
 
-async function personajesPorCabello(num, url, color) {
+const specificParametersBtn =document.getElementById("specificParameters")
+
+specificParametersBtn.addEventListener("click", function(){
+  const submenusPlanetsSpecificBtn = document.querySelector(".submenusPlanetsSpecific")
+  const primerSubmenu = document.querySelector(".submenus-active")
+  if (submenusPlanetsSpecificBtn.classList.contains("submenusPlanetsSpecific")) {
+    submenusPlanetsSpecificBtn.classList.remove("submenusPlanetsSpecific")
+    submenusPlanetsSpecificBtn.classList.add("submenusPlanetsSpecific-active")
+    primerSubmenu.classList.remove("submenus-active")
+    primerSubmenu.classList.add("submenus")
+  } else {
+    submenusPlanetsSpecificBtn.classList.remove("submenusPlanetsSpecific-active")
+    submenusPlanetsSpecificBtn.classList.add("submenusPlanetsSpecific")
+  }
+})
+
+const minusDiameter = document.getElementById("minusDiameter")
+minusDiameter.addEventListener("click", function(){
+  planetasPorDiametroMenor10000(7, urlPlanets, 0, 10000, "submenuPlanetsSpecific")
+})
+const maxDiameter = document.getElementById("maxDiameter")
+maxDiameter.addEventListener("click", function(){
+  planetasPorDiametroMayor10000(7, urlPlanets, 10000, 20000, "submenuPlanetsSpecific")
+})
+const minusOrbit = document.getElementById("minusOrbit")
+minusOrbit.addEventListener("click", function(){
+  planetasPorOrbitaMenorA500(7, urlPlanets, 0, 500, "submenuPlanetsSpecific")
+})
+const maxOrbit = document.getElementById("maxOrbit")
+maxOrbit.addEventListener("click", function(){
+  planetasPorOrbitaMenorA500(7, urlPlanets, 500, 1500, "submenuPlanetsSpecific")
+
+})
+
+async function planetasPorOrbitaMenorA500(num, url, rango1, rango2, susu){
+  const contenedor = document.querySelector(".contenedor");
+  const contenedor2 = document.querySelector(".contenedor2");
   let resultados = [];
   for (let i = 1; i < num; i++) {
     const todoData = await peticion(url + i);
     resultados = resultados.concat(todoData.results);
   }
-  console.log(resultados);
-  const filtrados = resultados.filter(function (personaje) {
-    return personaje.hair_color === color;
-  });
-  filtrados.forEach(function (personaje) {
-    console.log(
-      `Name: ${personaje.name} | Hair Color: ${personaje.hair_color}`
-    );
-  });
-}
-// async function personajesPorOjos(num, url, color) {
-//   let resultados = [];
-//   for (let i = 1; i < num; i++) {
-//     const todoData = await peticion(url + i);
-//     resultados = resultados.concat(todoData.results);
-//   }
-//   const filtrados = resultados.filter(function (personaje) {
-//     return personaje.eye_color === color;
-//   });
-//   filtrados.forEach(function (personaje) {
-//     console.log(`Name: ${personaje.name} | Eye Color: ${personaje.eye_color}`);
-//   });
-// }
-// async function personajesPorGenero(num, url, gen) {
-//   let resultados = [];
-//   for (let i = 1; i < num; i++) {
-//     const todoData = await peticion(url + i);
-//     resultados = resultados.concat(todoData.results);
-//   }
-//   const filtrados = resultados.filter(function (personaje) {
-//     return personaje.gender === gen;
-//   });
-//   filtrados.forEach(function (personaje) {
-//     console.log(`Name: ${personaje.name} | Gender: ${personaje.gender}`);
-//   });
-// }
-// async function personajesPorColorDePiel(num, url, color) {
-//   let resultados = [];
-//   for (let i = 1; i < num; i++) {
-//     const todoData = await peticion(url + i);
-//     resultados = resultados.concat(todoData.results);
-//   }
-//   const filtrados = resultados.filter(function (personaje) {
-//     return personaje.skin_color === color;
-//   });
-//   filtrados.forEach(function (personaje) {
-//     console.log(`Name: ${personaje.name} | Skin: ${personaje.skin_color}`);
-//   });
-// }
+  const filtrados = resultados.filter(function(planeta){
+    return planeta.orbital_period >= rango1 && planeta.orbital_period <= rango2;
+  })
 
-//let colores = "blond, brown, black"
-//personajesPorCabello(10, urlPersonajes, "blond");
-//let coloresOjos = "blue, green, brown"
-//personajesPorOjos(10, urlPersonajes, "gray")
-//let coloresPiel = "fair, dark"
-// personajesPorColorDePiel(10, urlPersonajes, "white");
+  contenedor.innerHTML = '';
+
+
+  filtrados.forEach(function(planeta){
+    const p = document.createElement('p');
+    p.innerHTML = `Name: ${planeta.name} | Orbital period: ${planeta.orbital_period}`;
+    contenedor.appendChild(p);
+    
+  })
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenusPlanetsSpecific-active");
+  submenu.classList.add("submenusPlanetsSpecific");
+}
+
+async function planetasPorDiametroMenor10000(num, url, rango1, rango2, susu) {
+  const contenedor = document.querySelector(".contenedor");
+  const contenedor2 = document.querySelector(".contenedor2");
+  let resultados = [];
+  
+  for (let i = 1; i < num; i++) {
+    const todoData = await peticion(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+  
+  const filtrados = resultados.filter(function(planeta) {
+    return planeta.diameter >= rango1 && planeta.diameter <= rango2;
+  });
+
+  contenedor.innerHTML = '';
+
+  filtrados.forEach(function(planeta) {
+    const p = document.createElement('p');
+    p.innerHTML = `Name: ${planeta.name} | Diameter: ${planeta.diameter}`;
+    contenedor.appendChild(p);
+  });
+  
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenusPlanetsSpecific-active");
+  submenu.classList.add("submenusPlanetsSpecific");
+}
+async function planetasPorDiametroMayor10000(num, url, rango1, rango2, susu){
+  const contenedor = document.querySelector(".contenedor");
+  const contenedor2 = document.querySelector(".contenedor2");
+  let resultados = [];
+  for (let i = 1; i < num; i++) {
+    const todoData = await peticion(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+  const filtrados = resultados.filter(function(planeta){
+    return planeta.diameter >= rango1 && planeta.diameter <= rango2;
+  })
+  filtrados.forEach(function(planeta){
+    console.log(`Name: ${planeta.name} | Diameter: ${planeta.diameter}`)
+  })
+  contenedor.innerHTML = '';
+
+  filtrados.forEach(function(planeta) {
+    const p = document.createElement('p');
+    p.innerHTML = `Name: ${planeta.name} | Diameter: ${planeta.diameter}`;
+    contenedor.appendChild(p);
+  });
+  
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenusPlanetsSpecific-active");
+  submenu.classList.add("submenusPlanetsSpecific");
+  
+}
