@@ -32,6 +32,45 @@ const btnTraerTodosLosFilms = document.getElementById("allFilmsBtn");
 const btnTraerTodosLosDirectores = document.getElementById("directorBtn");
 const btnTraerTodosLosProductores = document.getElementById("productorBtn");
 const btnTraerTodosLosFecha = document.getElementById("fechaBtn");
+const btnMasDetallesFilmsCharacters = document.getElementById("readMoreBtn");
+
+btnMasDetallesFilmsCharacters.addEventListener("click", function () {
+  const submenu = document.getElementById("verMasFilms");
+  const submenuOrg = document.getElementById("submenuFilms");
+  if (submenu.classList.contains("submenusVerMas")) {
+    submenu.classList.remove("submenusVerMas");
+    submenu.classList.add("submenusVerMas-active");
+    submenuOrg.classList.remove("submenus-active");
+    submenuOrg.classList.add("submenus");
+  } else {
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+  }
+});
+
+document.querySelectorAll("#filmCategories button").forEach((button) => {
+  button.addEventListener("click", () => {
+    document
+      .querySelectorAll(".submenusVerMas-active, .submenus-active")
+      .forEach((submenu) => {
+        submenu.classList.remove("submenusVerMas-active", "submenus-active");
+        submenu.classList.add("submenus", "submenusVerMas");
+      });
+  });
+});
+
+document.getElementById("verMasFilms").addEventListener("click", function (e) {
+  if (e.target.classList.contains("botonistos-submenu")) {
+    document
+      .getElementById("verMasFilms")
+      .classList.remove("submenusVerMas-active");
+    document.getElementById("verMasFilms").classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  }
+});
 
 btnTraerTodosLosFilms.onclick = function () {
   Pelis(
@@ -77,6 +116,130 @@ btnTraerTodosLosFecha.onclick = function () {
     }
   );
 };
+
+// BOTONES SUBMENUS PELICULAS------------------------------------------------------------------------------------------//
+
+document.getElementById("readMoreBtn").addEventListener("click", function () {
+  const submenu = document.getElementById("verMasFilms");
+  submenu.classList.remove("submenusVerMas");
+  submenu.classList.add("submenusVerMas-active");
+
+  const submenuOrg = document.getElementById("submenuFilms");
+  submenuOrg.classList.remove("submenus-active");
+  submenuOrg.classList.add("submenus");
+});
+
+const peliculas = [
+  { id: "newHopeBtn", title: "A New Hope" },
+  { id: "empStrikeBtn", title: "The Empire Strikes Back" },
+  { id: "returnJediBtn", title: "Return of the Jedi" },
+  { id: "phantomBtn", title: "The Phantom Menace" },
+  { id: "clonesBtn", title: "Attack of the Clones" },
+  { id: "revengeBtn", title: "Revenge of the Sith" },
+  { id: "forceBtn", title: "The Force Awakens" },
+];
+
+let selectedMovie = "";
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
+document
+  .getElementById("verMasCharacters")
+  .addEventListener("click", function () {
+    if (selectedMovie) {
+      llamarPersonajesPorPeliculas(
+        urlPeliculas,
+        selectedMovie,
+        urlImagenPelis,
+        600
+      );
+    } else {
+      console.log("No movie selected");
+    }
+  });
+
+async function llamarPersonajesPorPeliculas(
+  url,
+  pelicula,
+  urlImagen,
+  tamañoImagen
+) {
+  let contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  contenedor.innerHTML = "";
+  try {
+    const respuesta = await peticion(url);
+    const respuesta2 = respuesta.results;
+    const peliculasFiltradas = respuesta2.filter(
+      (item) => item.title === pelicula
+    );
+    if (peliculasFiltradas.length > 0) {
+      const urlsPersonajes = peliculasFiltradas[0].characters;
+      const nombresPersonajes = await obtenerNombresPersonajes(urlsPersonajes);
+      nombresPersonajes.forEach(function (nombre) {
+        const texto = document.createElement("p");
+        texto.innerHTML = `<span style="color: #c7c31c;">Character:</span> ${nombre}`;
+        contenedor.append(texto);
+      });
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+    } else {
+      console.log("Película no encontrada");
+    }
+  } catch (error) {
+    console.error("Error al llamar a los personajes por película:", error);
+  }
+}
+
+async function obtenerNombresPersonajes(urls) {
+  const nombres = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      nombres.push(data.name);
+    } catch (error) {
+      console.error("No se pudo obtener el nombre del personaje:", error);
+    }
+  }
+  return nombres;
+}
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
+//------------------------------------------------------------------------------------------------------------------//
+
 //---------------------------------------------------------------------------------------------------------------------//
 
 // BOTONES DE LOS SUBMENUS PLANETAS
@@ -85,6 +248,63 @@ const btnTraerTodosLosplanetas = document.getElementById("allplanetasBtn");
 const btnTraerTodosCondiciones = document.getElementById("allCondicionesBtn");
 const btnTraerTodosPopularidad = document.getElementById("allPopularidadBtn");
 const btnTraerTodosParametros = document.getElementById("allParametrosBtn");
+const btnTraerResidentes = document.getElementById("allResidents");
+
+btnTraerResidentes.addEventListener("click", function () {
+  traerResidentes(urlPlanets, 7, "submenuPlanets", urlImagenPlaneti, 500);
+});
+
+async function traerResidentes(url, num, susu, urlImagen, tamañoImagen) {
+  let resultadosPlanetas = [];
+  const imagenes = document.querySelector(".contenedor2");
+
+  for (let i = 1; i < num; i++) {
+    const todoData = await peticion(url + i);
+    resultadosPlanetas = resultadosPlanetas.concat(todoData.results);
+  }
+
+  const resultadosP = resultadosPlanetas.filter(
+    (planeta) => planeta.residents.length > 0 && planeta.name !== "Unknown"
+  );
+
+  const contenedor = document.querySelector(".contenedor");
+  contenedor.innerHTML = "";
+
+  for (const planeta of resultadosP) {
+    const planetaDiv = document.createElement("div");
+
+    const titulo = document.createElement("h3");
+    titulo.innerHTML = `<span style="color: yellow;">${planeta.name}</span>`;
+    planetaDiv.appendChild(titulo);
+
+    textoInicial.classList.add("texto_oculto");
+    imagenes.classList.add("contenedor2-active");
+    const imagen = document.createElement("img");
+    imagenes.innerHTML = "";
+    imagen.src = urlImagen;
+    imagen.width = tamañoImagen;
+    imagenes.appendChild(imagen);
+
+    for (const residentUrl of planeta.residents) {
+      try {
+        const response = await fetch(residentUrl);
+        const resident = await response.json();
+        const residentP = document.createElement("p");
+        residentP.textContent = `Nombre: ${resident.name}`;
+        planetaDiv.appendChild(residentP);
+      } catch (error) {
+        console.error("Error al cargar el residente:", error);
+      }
+    }
+
+    contenedor.appendChild(planetaDiv);
+    const submenu = document.getElementById(susu);
+    submenu.classList.remove("submenus-active");
+    submenu.classList.add("submenus");
+  }
+}
+
+//------------------------------------------------------------------------------------------------------------------//
 
 btnTraerTodosLosplanetas.onclick = function () {
   verTodo(
@@ -94,7 +314,8 @@ btnTraerTodosLosplanetas.onclick = function () {
     "submenuPlanets",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
-    },7
+    },
+    7
   );
 };
 btnTraerTodosCondiciones.onclick = function () {
@@ -105,7 +326,8 @@ btnTraerTodosCondiciones.onclick = function () {
     "submenuPlanets",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Rotation Period:</span> ${todo.rotation_period}<br><span style="color: #c7c31c;">Orbital Period:</span> ${todo.orbital_period}<br><span style="color: #c7c31c;">Gravity:</span> ${todo.gravity}`;
-    },7
+    },
+    7
   );
 };
 btnTraerTodosPopularidad.onclick = function () {
@@ -116,7 +338,8 @@ btnTraerTodosPopularidad.onclick = function () {
     "submenuPlanets",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Population:</span> ${todo.population}<br><span style="color: #c7c31c;">Surface Water:</span> ${todo.surface_water}`;
-    },7
+    },
+    7
   );
 };
 btnTraerTodosParametros.onclick = function () {
@@ -127,9 +350,93 @@ btnTraerTodosParametros.onclick = function () {
     "submenuPlanets",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br> <span style="color: #c7c31c;">Diametro:</span> ${todo.diameter}<br><span style="color: #c7c31c;">Climate:</span> ${todo.climate}<br><span style="color: #c7c31c;">Terrain:</span> ${todo.terrain}`;
-    },7
+    },
+    7
   );
 };
+
+//SUBMENU PLANETAS POR PELICULAS DE FILMS ----------------------------------------------------------------------------//
+
+document.getElementById("verMasPlanets").addEventListener("click", function () {
+  if (selectedMovie) {
+    llamarPlanetasPorPeliculas(
+      urlPeliculas,
+      selectedMovie,
+      urlImagenPlaneti,
+      600
+    );
+  } else {
+    console.log("No movie selected");
+  }
+});
+
+async function llamarPlanetasPorPeliculas(
+  url,
+  pelicula,
+  urlImagen,
+  tamañoImagen
+) {
+  let contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  contenedor.innerHTML = "";
+  try {
+    const respuesta = await peticion(url);
+    const respuesta2 = respuesta.results;
+    const peliculasFiltradas = respuesta2.filter(
+      (item) => item.title === pelicula
+    );
+    if (peliculasFiltradas.length > 0) {
+      const urlsPlanets = peliculasFiltradas[0].planets;
+      const nombresPlanetas = await obtenerNombresPlanetas(urlsPlanets);
+      nombresPlanetas.forEach(function (nombre) {
+        const texto = document.createElement("p");
+        texto.innerHTML = `<span style="color: #c7c31c;">Planet:</span> ${nombre}`;
+        contenedor.append(texto);
+      });
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+    } else {
+      console.log("Película no encontrada");
+    }
+  } catch (error) {
+    console.error("Error al llamar a los planetas por película:", error);
+  }
+}
+
+async function obtenerNombresPlanetas(urls) {
+  const nombres = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      nombres.push(data.name);
+    } catch (error) {
+      console.error("No se pudo obtener el nombre del planeta:", error);
+    }
+  }
+  return nombres;
+}
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
 //---------------------------------------------------------------------------------------------------------------------//
 
 // BOTONES DE LOS SUBMENUS VEHICULOS
@@ -147,7 +454,8 @@ btnTraerTodosLosvehiculos.onclick = function () {
     "submenuVehicles",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosModelos.onclick = function () {
@@ -158,7 +466,8 @@ btnTraerTodosLosModelos.onclick = function () {
     "submenuVehicles",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Vehicle Class:</span> ${todo.vehicle_class}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosEspecificaciones.onclick = function () {
@@ -169,7 +478,8 @@ btnTraerTodosLosEspecificaciones.onclick = function () {
     "submenuVehicles",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Lenght:</span> ${todo.length}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosParametros.onclick = function () {
@@ -180,9 +490,93 @@ btnTraerTodosLosParametros.onclick = function () {
     "submenuVehicles",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
-    },5
+    },
+    5
   );
 };
+
+document
+  .getElementById("verMasVehicles")
+  .addEventListener("click", function () {
+    if (selectedMovie) {
+      llamarVehiculosPorPeliculas(
+        urlPeliculas,
+        selectedMovie,
+        urlImagenCarrito,
+        600
+      );
+    } else {
+      console.log("No movie selected");
+    }
+  });
+
+async function llamarVehiculosPorPeliculas(
+  url,
+  pelicula,
+  urlImagen,
+  tamañoImagen
+) {
+  let contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  contenedor.innerHTML = "";
+  try {
+    const respuesta = await peticion(url);
+    const respuesta2 = respuesta.results;
+    const peliculasFiltradas = respuesta2.filter(
+      (item) => item.title === pelicula
+    );
+    if (peliculasFiltradas.length > 0) {
+      const urlsVehicles = peliculasFiltradas[0].vehicles;
+      const nombresPlanetas = await obtenerNombresPlanetas(urlsVehicles);
+      nombresPlanetas.forEach(function (nombre) {
+        const texto = document.createElement("p");
+        texto.innerHTML = `<span style="color: #c7c31c;">Vehicle:</span> ${nombre}`;
+        contenedor.append(texto);
+      });
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+    } else {
+      console.log("Película no encontrada");
+    }
+  } catch (error) {
+    console.error("Error al llamar a los planetas por película:", error);
+  }
+}
+
+async function obtenerNombresPlanetas(urls) {
+  const nombres = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      nombres.push(data.name);
+    } catch (error) {
+      console.error("No se pudo obtener el nombre del planeta:", error);
+    }
+  }
+  return nombres;
+}
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
 //---------------------------------------------------------------------------------------------------------------------//
 // BOTONES DE LOS SUBMENUS PERSONAJES
 
@@ -200,7 +594,8 @@ btnTraerTodosLosPersonajes.onclick = function () {
     "submenuCharacters",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
-    },10
+    },
+    10
   );
 };
 btnTraerTodosLosMedidas.onclick = function () {
@@ -211,7 +606,8 @@ btnTraerTodosLosMedidas.onclick = function () {
     "submenuCharacters",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Height:</span> ${todo.height}<br><span style="color: #c7c31c;">Mass:</span> ${todo.mass}`;
-    },10
+    },
+    10
   );
 };
 btnTraerTodosLosInformacion.onclick = function () {
@@ -222,7 +618,8 @@ btnTraerTodosLosInformacion.onclick = function () {
     "submenuCharacters",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Birth Year:</span> ${todo.birth_year}<br><span style="color: #c7c31c;">Gender:</span> ${todo.gender}`;
-    }, 10
+    },
+    10
   );
 };
 btnTraerTodosLosFisico.onclick = function () {
@@ -255,7 +652,8 @@ btnTraerTodosLosEspecies.onclick = function () {
     "submenuSpecies",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosInfoEspecies.onclick = function () {
@@ -266,7 +664,8 @@ btnTraerTodosLosInfoEspecies.onclick = function () {
     "submenuSpecies",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Classification:</span> ${todo.classification}<br><span style="color: #c7c31c;">Designation:</span> ${todo.designation}<br><span style="color: #c7c31c;">Language:</span> ${todo.language}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosVitalidad.onclick = function () {
@@ -277,7 +676,8 @@ btnTraerTodosLosVitalidad.onclick = function () {
     "submenuSpecies",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Average Height:</span> ${todo.average_height}<br><span style="color: #c7c31c;">Average Lifespan:</span> ${todo.average_lifespan}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosFisicoEspecie.onclick = function () {
@@ -288,9 +688,91 @@ btnTraerTodosLosFisicoEspecie.onclick = function () {
     "submenuSpecies",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Hair color:</span> ${todo.hair_colors}<br><span style="color: #c7c31c;">Skin Color:</span> ${todo.skin_colors}<br><span style="color: #c7c31c;">Eye Color:</span> ${todo.eye_colors}`;
-    },5
+    },
+    5
   );
 };
+
+document.getElementById("verMasSpecies").addEventListener("click", function () {
+  if (selectedMovie) {
+    llamarSpeciesPorPeliculas(
+      urlPeliculas,
+      selectedMovie,
+      urlImagenEspecie,
+      600
+    );
+  } else {
+    console.log("No movie selected");
+  }
+});
+
+async function llamarSpeciesPorPeliculas(
+  url,
+  pelicula,
+  urlImagen,
+  tamañoImagen
+) {
+  let contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  contenedor.innerHTML = "";
+  try {
+    const respuesta = await peticion(url);
+    const respuesta2 = respuesta.results;
+    const peliculasFiltradas = respuesta2.filter(
+      (item) => item.title === pelicula
+    );
+    if (peliculasFiltradas.length > 0) {
+      const urlsSpecies = peliculasFiltradas[0].species;
+      const nombresPlanetas = await obtenerNombresPlanetas(urlsSpecies);
+      nombresPlanetas.forEach(function (nombre) {
+        const texto = document.createElement("p");
+        texto.innerHTML = `<span style="color: #c7c31c;">Specie:</span> ${nombre}`;
+        contenedor.append(texto);
+      });
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+    } else {
+      console.log("Película no encontrada");
+    }
+  } catch (error) {
+    console.error("Error al llamar a los especies por película:", error);
+  }
+}
+
+async function obtenerNombresPlanetas(urls) {
+  const nombres = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      nombres.push(data.name);
+    } catch (error) {
+      console.error("No se pudo obtener el nombre de los especies:", error);
+    }
+  }
+  return nombres;
+}
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
 //---------------------------------------------------------------------------------------------------------------------//
 
 // BOTONES DE LOS SUBMENUS NAVES
@@ -312,7 +794,8 @@ btnTraerTodosLosNaves.onclick = function () {
     "submenuStarships",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosNavesModelos.onclick = function () {
@@ -323,7 +806,8 @@ btnTraerTodosLosNavesModelos.onclick = function () {
     "submenuStarships",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Model:</span> ${todo.model}<br><span style="color: #c7c31c;">Cargo Manufacturer:</span> ${todo.manufacturer}<br><span style="color: #c7c31c;">Starship Class:</span> ${todo.starship_class}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosNavesEspecificaciones.onclick = function () {
@@ -334,7 +818,8 @@ btnTraerTodosLosNavesEspecificaciones.onclick = function () {
     "submenuStarships",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Passengers:</span> ${todo.passengers}<br><span style="color: #c7c31c;">Cargo Capacity:</span> ${todo.cargo_capacity}<br><span style="color: #c7c31c;">Length:</span> ${todo.length}`;
-    },5
+    },
+    5
   );
 };
 btnTraerTodosLosNavesParametros.onclick = function () {
@@ -345,9 +830,93 @@ btnTraerTodosLosNavesParametros.onclick = function () {
     "submenuStarships",
     function generarContenidoHtml(todo) {
       return `<span style="color: #c7c31c;">Name:</span> ${todo.name}<br><span style="color: #c7c31c;">Cost:</span> $${todo.cost_in_credits}<br><span style="color: #c7c31c;">Consumables:</span> ${todo.consumables}<br><span style="color: #c7c31c;">Max Speed:</span> ${todo.max_atmosphering_speed}`;
-    },5
+    },
+    5
   );
 };
+
+document
+  .getElementById("verMasStarships")
+  .addEventListener("click", function () {
+    if (selectedMovie) {
+      llamarStashipsPorPeliculas(
+        urlPeliculas,
+        selectedMovie,
+        urlImagenNavesita,
+        600
+      );
+    } else {
+      console.log("No movie selected");
+    }
+  });
+
+async function llamarStashipsPorPeliculas(
+  url,
+  pelicula,
+  urlImagen,
+  tamañoImagen
+) {
+  let contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  contenedor.innerHTML = "";
+  try {
+    const respuesta = await peticion(url);
+    const respuesta2 = respuesta.results;
+    const peliculasFiltradas = respuesta2.filter(
+      (item) => item.title === pelicula
+    );
+    if (peliculasFiltradas.length > 0) {
+      const urlsStarships = peliculasFiltradas[0].starships;
+      const nombresStarships = await obtenerNombresPlanetas(urlsStarships);
+      nombresStarships.forEach(function (nombre) {
+        const texto = document.createElement("p");
+        texto.innerHTML = `<span style="color: #c7c31c;">Starship:</span> ${nombre}`;
+        contenedor.append(texto);
+      });
+      textoInicial.classList.add("texto_oculto");
+      imagenes.classList.add("contenedor2-active");
+      imagenes.innerHTML = "";
+      const imagen = document.createElement("img");
+      imagen.src = urlImagen;
+      imagen.width = tamañoImagen;
+      imagenes.appendChild(imagen);
+    } else {
+      console.log("Película no encontrada");
+    }
+  } catch (error) {
+    console.error("Error al llamar a los naves por película:", error);
+  }
+}
+
+async function obtenerNombresPlanetas(urls) {
+  const nombres = [];
+  for (const url of urls) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      nombres.push(data.name);
+    } catch (error) {
+      console.error("No se pudo obtener el nombre de los naves:", error);
+    }
+  }
+  return nombres;
+}
+
+peliculas.forEach(function (pelicula) {
+  const element = document.getElementById(pelicula.id);
+  element.addEventListener("click", function () {
+    selectedMovie = pelicula.title;
+
+    const submenu = document.getElementById("verMasFilms");
+    submenu.classList.remove("submenusVerMas-active");
+    submenu.classList.add("submenusVerMas");
+
+    const filmCategories = document.getElementById("filmCategories");
+    filmCategories.classList.remove("submenusVerMasCategories");
+    filmCategories.classList.add("submenusVerMas-active");
+  });
+});
+
 //---------------------------------------------------------------------------------------------------------------------//
 
 //FUNCIONES PARA ABRIR LOS SUBMENUS - el evento onclick recibe siempre una funcion, en este caso como la funcion recibe parametros, toca envolverla en una funcion x
@@ -390,7 +959,14 @@ async function abriendoMenusitos(subMenuId) {
     activeSubmenu.classList.remove("submenus-active");
     activeSubmenu.classList.add("submenus");
   }
-
+  const submenuVerMas = document.getElementById("verMasFilms");
+  if (
+    submenuVerMas &&
+    submenuVerMas.classList.contains("submenusVerMas-active")
+  ) {
+    submenuVerMas.classList.remove("submenusVerMas-active");
+    submenuVerMas.classList.add("submenusVerMas");
+  }
   const btn = document.getElementById(subMenuId);
   if (btn.classList.contains("submenus-active")) {
     btn.classList.remove("submenus-active");
@@ -416,78 +992,137 @@ let urlImagenEspecie = "https://giffiles.alphacoders.com/212/212696.gif";
 let urlImagenNavesita =
   "https://mir-s3-cdn-cf.behance.net/project_modules/disp/4b5683133022173.61b4a4cb0a205.gif";
 
-  async function verTodo(
-    url,
-    urlImagen,
-    tamañoImagen,
-    susu,
-    generarContenidoHtml,
-    num
-  ) {
-    const contenedor = document.querySelector(".contenedor");
-    const imagenes = document.querySelector(".contenedor2");
-  
-    let resultados = [];
-    try{
-      for (let i = 1; i < num; i++) {
-        const todoData = await peticion(url + i);
-        resultados = resultados.concat(todoData.results);
-      }
-  
-      textoInicial.classList.add("texto_oculto");
-      imagenes.classList.add("contenedor2-active");
-      imagenes.innerHTML = "";
-      const imagen = document.createElement("img");
-      imagen.src = urlImagen;
-      imagen.width = tamañoImagen;
-      imagenes.appendChild(imagen);
-  
-      contenedor.innerHTML = "";
-      resultados.forEach(function (todo) {
-        const texto = document.createElement("p");
-        texto.classList.add("todo_list");
-        texto.innerHTML = generarContenidoHtml(todo);
-        contenedor.appendChild(texto);
-      });
-  
-      const submenu = document.getElementById(susu);
-      submenu.classList.remove("submenus-active");
-      submenu.classList.add("submenus");
-    } catch(error){
-      console.log("No hay mas datos")
+async function verTodo(
+  url,
+  urlImagen,
+  tamañoImagen,
+  susu,
+  generarContenidoHtml,
+  num
+) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+
+  let resultados = [];
+  try {
+    for (let i = 1; i < num; i++) {
+      const todoData = await peticion(url + i);
+      resultados = resultados.concat(todoData.results);
     }
-  }
-  async function Pelis(
-    url,
-    urlImagen,
-    tamañoImagen,
-    susu,
-    generarContenidoHtml
-  ) {
-    const contenedor = document.querySelector(".contenedor");
-    const imagenes = document.querySelector(".contenedor2");
-    const todoData = await peticion(url);
-    const listatodo = todoData.results;
-  
+
     textoInicial.classList.add("texto_oculto");
     imagenes.classList.add("contenedor2-active");
-    const imagen = document.createElement("img");
     imagenes.innerHTML = "";
+    const imagen = document.createElement("img");
     imagen.src = urlImagen;
     imagen.width = tamañoImagen;
     imagenes.appendChild(imagen);
+
     contenedor.innerHTML = "";
-  
-    listatodo.forEach(function (todo) {
+    resultados.forEach(function (todo) {
       const texto = document.createElement("p");
       texto.classList.add("todo_list");
-  
       texto.innerHTML = generarContenidoHtml(todo);
-  
       contenedor.appendChild(texto);
     });
-  
+
     const submenu = document.getElementById(susu);
     submenu.classList.remove("submenus-active");
     submenu.classList.add("submenus");
+  } catch (error) {
+    console.log("No hay mas datos");
   }
+}
+async function Pelis(url, urlImagen, tamañoImagen, susu, generarContenidoHtml) {
+  const contenedor = document.querySelector(".contenedor");
+  const imagenes = document.querySelector(".contenedor2");
+  const todoData = await peticion(url);
+  const listatodo = todoData.results;
+
+  textoInicial.classList.add("texto_oculto");
+  imagenes.classList.add("contenedor2-active");
+  const imagen = document.createElement("img");
+  imagenes.innerHTML = "";
+  imagen.src = urlImagen;
+  imagen.width = tamañoImagen;
+  imagenes.appendChild(imagen);
+  contenedor.innerHTML = "";
+
+  listatodo.forEach(function (todo) {
+    const texto = document.createElement("p");
+    texto.classList.add("todo_list");
+
+    texto.innerHTML = generarContenidoHtml(todo);
+
+    contenedor.appendChild(texto);
+  });
+
+  const submenu = document.getElementById(susu);
+  submenu.classList.remove("submenus-active");
+  submenu.classList.add("submenus");
+}
+
+// Llamados especificos de personajes -------------------------------------------------------------------------------
+
+async function personajesPorCabello(num, url, color) {
+  let resultados = [];
+  for (let i = 1; i < num; i++) {
+    const todoData = await peticion(url + i);
+    resultados = resultados.concat(todoData.results);
+  }
+  console.log(resultados);
+  const filtrados = resultados.filter(function (personaje) {
+    return personaje.hair_color === color;
+  });
+  filtrados.forEach(function (personaje) {
+    console.log(
+      `Name: ${personaje.name} | Hair Color: ${personaje.hair_color}`
+    );
+  });
+}
+// async function personajesPorOjos(num, url, color) {
+//   let resultados = [];
+//   for (let i = 1; i < num; i++) {
+//     const todoData = await peticion(url + i);
+//     resultados = resultados.concat(todoData.results);
+//   }
+//   const filtrados = resultados.filter(function (personaje) {
+//     return personaje.eye_color === color;
+//   });
+//   filtrados.forEach(function (personaje) {
+//     console.log(`Name: ${personaje.name} | Eye Color: ${personaje.eye_color}`);
+//   });
+// }
+// async function personajesPorGenero(num, url, gen) {
+//   let resultados = [];
+//   for (let i = 1; i < num; i++) {
+//     const todoData = await peticion(url + i);
+//     resultados = resultados.concat(todoData.results);
+//   }
+//   const filtrados = resultados.filter(function (personaje) {
+//     return personaje.gender === gen;
+//   });
+//   filtrados.forEach(function (personaje) {
+//     console.log(`Name: ${personaje.name} | Gender: ${personaje.gender}`);
+//   });
+// }
+// async function personajesPorColorDePiel(num, url, color) {
+//   let resultados = [];
+//   for (let i = 1; i < num; i++) {
+//     const todoData = await peticion(url + i);
+//     resultados = resultados.concat(todoData.results);
+//   }
+//   const filtrados = resultados.filter(function (personaje) {
+//     return personaje.skin_color === color;
+//   });
+//   filtrados.forEach(function (personaje) {
+//     console.log(`Name: ${personaje.name} | Skin: ${personaje.skin_color}`);
+//   });
+// }
+
+//let colores = "blond, brown, black"
+//personajesPorCabello(10, urlPersonajes, "blond");
+//let coloresOjos = "blue, green, brown"
+//personajesPorOjos(10, urlPersonajes, "gray")
+//let coloresPiel = "fair, dark"
+// personajesPorColorDePiel(10, urlPersonajes, "white");

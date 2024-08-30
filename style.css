@@ -2,6 +2,7 @@
   font-family: "StarWars";
   src: url(/backstage/Futura\ Display.ttf);
 }
+
 body {
   font-family: "StarWars";
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
@@ -10,6 +11,7 @@ body {
   background-attachment: fixed;
   color: white;
 }
+
 .barrita {
   display: flex;
   justify-content: space-around;
@@ -17,6 +19,7 @@ body {
   flex-wrap: wrap;
   margin-top: 2%;
 }
+
 .botonsitos {
   font-family: StarWars;
   width: 150px;
@@ -28,9 +31,11 @@ body {
   cursor: pointer;
   transition: color;
 }
+
 .botonsitos:hover {
   color: #c7c31c;
 }
+
 .contenedor {
   width: 50%;
   height: 50vh;
@@ -43,14 +48,17 @@ body {
   background-color: rgba(70, 69, 69, 0.24);
   border-radius: 30px;
 }
+
 .contenedor2 {
   display: none;
 }
+
 .contenedor2-active {
   display: flex;
   align-items: center;
   height: 50vh;
 }
+
 .grande {
   display: flex;
   margin-top: 3%;
@@ -61,18 +69,23 @@ body {
   height: 60vh;
   flex-wrap: wrap;
 }
+
 .contenedor::-webkit-scrollbar {
   display: none;
 }
+
 .texto_oculto {
   display: none;
 }
+
 strong {
   color: #bdba1c9a;
 }
+
 .submenus {
   display: none;
 }
+
 .submenus-active {
   display: flex;
   background-color: rgba(0, 0, 0, 0.432);
@@ -85,6 +98,39 @@ strong {
   font-size: 25px;
   line-height: 55px;
 }
+
+.submenusVerMas {
+  display: none;
+}
+.submenusVerMasCategories {
+  display: none;
+}
+
+.submenusVerMas-active {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.432);
+  border-radius: 3px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  line-height: 55px;
+}
+.submenusVerMasCategories-active {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.432);
+  border-radius: 3px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  line-height: 55px;
+}
+
 #submenuFilms {
   position: absolute;
   left: 110px;
@@ -94,22 +140,36 @@ strong {
   position: absolute;
   left: 400px;
 }
+
 #submenuVehicles {
   position: absolute;
   left: 750px;
 }
+
 #submenuCharacters {
   position: absolute;
   left: 1055px;
 }
+
 #submenuSpecies {
   position: absolute;
   left: 1355px;
 }
+
 #submenuStarships {
   position: absolute;
   left: 1700px;
 }
+
+#verMasFilms {
+  position: absolute;
+  left: 60px;
+}
+#filmCategories {
+  position: absolute;
+  left: 60px;
+}
+
 .botonistos-submenu {
   background-color: transparent;
   color: white;
@@ -119,62 +179,95 @@ strong {
   cursor: pointer;
   margin-top: 15px;
 }
+
 .botonistos-submenu:hover {
   color: #c7c31c;
 }
 
+/* Estilos para pantallas de hasta 1680px */
 @media (max-width: 1680px) {
   #submenuFilms,
   #submenuPlanets,
   #submenuVehicles,
   #submenuCharacters,
   #submenuSpecies,
-  #submenuStarships {
+  #submenuStarships,
+  #verMasFilms,
+  #filmCategories {
+    position: relative;
+    left: 0;
+    margin-top: 35px;
+  }
+
+  .submenusVerMas-active {
     position: relative;
     left: 0;
     margin-top: 35px;
   }
 }
 
+/* Estilos para pantallas de hasta 1280px */
 @media (max-width: 1280px) {
   #submenuFilms,
   #submenuPlanets,
   #submenuVehicles,
   #submenuCharacters,
   #submenuSpecies,
-  #submenuStarships {
+  #submenuStarships,
+  #verMasFilms,
+  #filmCategories {
     position: relative;
     left: 0;
     margin-top: 35px;
   }
+
+  .submenusVerMas-active {
+    position: relative;
+    left: 0;
+    margin-top: 35px;
+  }
+
   .contenedor {
     display: flex;
     width: 90%;
     align-items: center;
   }
+
   .contenedor2-active img {
     width: 450px;
   }
 }
+
+/* Estilos para pantallas de hasta 768px */
 @media (max-width: 768px) {
   #submenuFilms,
   #submenuPlanets,
   #submenuVehicles,
   #submenuCharacters,
   #submenuSpecies,
-  #submenuStarships {
+  #submenuStarships,
+  #verMasFilms,
+  #filmCategories {
     position: relative;
     left: 0;
   }
+
+  .submenusVerMas-active {
+    position: relative;
+    left: 0;
+  }
+
   .contenedor {
     display: flex;
     width: 90%;
     align-items: center;
     margin-top: 15px;
   }
+
   .contenedor2-active img {
     width: 250px;
   }
+
   .barrita {
     margin-bottom: 15px;
   }
